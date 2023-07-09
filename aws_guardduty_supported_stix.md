@@ -16,7 +16,7 @@
 | IN | Equals |
 | OR (Observation) | or |
 | AND (Observation) | or |
-| <br> | |
+
 ### Searchable STIX objects and properties
 | STIX Object and Property | Mapped Data Source Fields |
 |--|--|
