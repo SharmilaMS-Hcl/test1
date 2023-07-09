@@ -42,6 +42,7 @@
 | **user-account**:x_user_type | resource.accessKeyDetails.userType |
 | **domain-name**:value | resource.instanceDetails.networkInterfaces.publicDnsName,service.action.dnsRequestAction.domain |
 | **process**:name | service.runtimeDetails.process.name |
+| **process**:binary_ref.hashes.'SHA-256' | service.runtimeDetails.process.executableSha256 |
 | **file**:hashes.'SHA-256' | service.runtimeDetails.process.executableSha256, service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.filePaths.hash |
 | **file**:x_path | service.runtimeDetails.process.executablePath |
 | **file**:hashes.'SHA-1' | service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.filePaths.hash |
@@ -55,7 +56,7 @@
 | **x-aws-resource**:lambda_details_ref.function_name | resource.lambdaDetails.functionName |
 | **x-aws-resource**:ecs_cluster_ref.name | resource.ecsClusterDetails.name |
 | **x-aws-resource**:eks_cluster_ref.name | resource.eksClusterDetails.name |
-| **x-aws-resource**:resource.resourceType | resource.resourceType |
+| **x-aws-resource**:resource_type | resource.resourceType |
 | **x-aws-resource**:resource_role | service.resourceRole |
 | **x-aws-instance**:image_id | resource.instanceDetails.imageId |
 | **x-aws-instance**:profile_id | resource.instanceDetails.iamInstanceProfile.id |
@@ -87,8 +88,8 @@
 | **x-aws-ecs-cluster**:task.definition_arn | resource.ecsClusterDetails.taskDetails.definitionArn |
 | **x-aws-container**:image | resource.ecsClusterDetails.taskDetails.containers.image,resource.kubernetesDetails.kubernetesWorkloadDetails.containers.image,resource.containerDetails.image|
 | **x-aws-container**:image_prefix | resource.kubernetesDetails.kubernetesWorkloadDetails.containers.imagePrefix |
-| **x-aws-kubernetes**:workload_name | resource.kubernetesDetails.kubernetesWorkloadDetails.name |
-| **x-aws-kubernetes**:workload_namespace | resource.kubernetesDetails.kubernetesWorkloadDetails.namespace |
+| **x-aws-kubernetes-workload**:workload_name | resource.kubernetesDetails.kubernetesWorkloadDetails.name |
+| **x-aws-kubernetes-workload**:workload_namespace | resource.kubernetesDetails.kubernetesWorkloadDetails.namespace |
 | **x-aws-eks-cluster**:name | resource.eksClusterDetails.name |
 | **x-aws-ebs-volume-malware-scan**:scan_id | service.ebsVolumeScanDetails.scanId |
 | **x-aws**:account_id | accountId |
@@ -99,6 +100,7 @@
 | **x-ibm-finding**:severity | severity |
 | **x-ibm-finding**:name | type |
 | **x-ibm-finding**:x_resource_ref.resource_type | resource.resourceType |
+| **x-ibm-finding**:src_application_user_ref.display_name | resource.kubernetesDetails.kubernetesUserDetails.username |
 | **x-aws-finding-service**:action.action_type | service.action.actionType |
 | **x-aws-finding-service**:action.aws_api_call.api_called | service.action.awsApiCallAction.api |
 | **x-aws-finding-service**:action.aws_api_call.caller_account_id | service.action.awsApiCallAction.remoteAccountDetails.accountId |
@@ -111,6 +113,7 @@
 | **x-aws-threat**:threat_name | service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.name |
 | **x-aws-threat**:severity | service.ebsVolumeScanDetails.scanDetections.threatDetectedByName.threatNames.severity |
 | **x-aws-evidence**:threat_intelligence_list_name | service.additionalInfo.threatListName |
+
 ### Supported STIX Objects and Properties for Query Results
 | STIX Object | STIX Property | Data Source Field |
 |--|--|--|
