@@ -1,235 +1,679 @@
-##### Updated on 04/07/22
-## PaloAlto Cortex XDR
-### Supported STIX Operators
-| STIX Operator | Data Source Operator |
-|--|--|
-| AND | and |
-| OR  | or |
-| > | > |
-| >= | >= |
-| < | < |
-| <= | <= |
-| = | = |
-| != | != |
-| LIKE | contains |
-| IN | in |
-| MATCHES | ~= |
-| <br> | | |
-### Supported STIX Objects and Properties
-| STIX Object | STIX Property | Data Source Field |
-|--|--|--|
-| directory | path | action_file_path |
-| directory | path | action_process_image_path |
-| directory | path | action_registry_file_path |
-| directory | path | actor_process_image_path |
-| directory | path | causality_actor_process_image_path |
-| directory | path | os_actor_process_image_path |
-| <br> | | |
-| domain-name | value | auth_domain |
-| domain-name | value | dst_host_metadata_domain |
-| domain-name | value | host_metadata_domain |
-| <br> | | |
-| file | name | action_file_name |
-| file | name | action_process_image_name |
-| file | name | actor_process_image_name |
-| file | name | causality_actor_process_image_name |
-| file | name | os_actor_process_image_name |
-| file | size | action_file_size |
-| file | hashes.MD5 | action_file_md5 |
-| file | hashes.MD5 | action_module_md5 |
-| file | hashes.MD5 | action_process_image_md5 |
-| file | hashes.SHA-1 | action_file_authenticode_sha1 |
-| file | hashes.SHA-2 | action_file_authenticode_sha2 |
-| file | hashes.SHA-256 | action_file_sha256 |
-| file | hashes.SHA-256 | action_module_sha256 |
-| file | hashes.SHA-256 | action_process_image_sha256 |
-| file | accessed | action_file_access_time |
-| file | accessed | actor_process_file_access_time |
-| file | accessed | os_actor_process_file_access_time |
-| file | modified | action_file_mod_time |
-| file | modified | actor_process_file_mod_time |
-| file | modified | os_actor_process_file_mod_time |
-| file | created | action_file_create_time |
-| file | parent_directory_ref | action_file_path |
-| file | parent_directory_ref | action_process_image_path | 
-| file | parent_directory_ref | action_registry_file_path | 
-| file | parent_directory_ref | actor_process_image_path | 
-| file | parent_directory_ref | causality_actor_process_image_path | 
-| file | parent_directory_ref | os_actor_process_image_path |
-| file | extensions.x-paloalto-file.extension | action_file_extension |
-| file | extensions.x-paloalto-file.company | action_file_info_company |
-| file | extensions.x-paloalto-file.attributes | action_file_attributes |
-| file | extensions.x-paloalto-file.zipped_files | action_file_internal_zipped_files |
-| file | extensions.x-paloalto-file.writer | action_file_last_writer_actor |
-| file | extensions.x-paloalto-file.mode | action_file_mode |
-| file | extensions.x-paloalto-file.signature_status | action_file_signature_status |
-| file | extensions.x-paloalto-file.signature_vendor | action_file_signature_vendor |
-| file | extensions.x-paloalto-file.signature_product | action_file_signature_product |
-| file | extensions.x-paloalto-file.file_description | action_file_info_description |
-| file | extensions.x-paloalto-file.group | action_file_group |
-| file | extensions.x-paloalto-file.group_name | action_file_group_name |
-| file | extensions.x-paloalto-file.type | action_file_type |
-| file | extensions.x-paloalto-file.version | action_file_info_file_version |
-| file | extensions.x-paloalto-file.manifest_version | manifest_file_version |
-| file | extensions.x-paloalto-file.product_version | action_file_info_product_version |
-| file | extensions.x-paloalto-file.owner | action_file_owner |
-| file | extensions.x-paloalto-file.owner_name | action_file_owner_name |
-| file | extensions.x-paloalto-file.product_name | action_file_info_product_name |
-| file | extensions.x-paloalto-file.id | action_file_id |
-| file | extensions.x-paloalto-file.wildfire_verdict | action_file_wildfire_verdict |
-| file | extensions.x-paloalto-file.control_verdict | action_file_hash_control_verdict |
-| <br> | | |
-| ipv4-addr | value | action_local_ip |
-| ipv4-addr | value | action_remote_ip |
-| ipv4-addr | value | agent_ip_addresses |
-| <br> | | |
-| ipv6-addr | value | agent_ip_addresses_v6 |
-| ipv6-addr | value | dst_agent_ip_addresses_v6 |
-| <br> | | |
-| mac-addr | value | mac |
-| mac-addr | value | associated_mac |
-| mac-addr | value | dst_associated_mac |
-| mac-addr | value | dst_mac |
-| <br> | | |
-| network-traffic | src_ref | action_local_ip |
-| network-traffic | src_ref | agent_ip_addresses |
-| network-traffic | dst_ref | action_remote_ip |
-| network-traffic | src_port | action_local_port |
-| network-traffic | dst_port | action_remote_port |
-| network-traffic | protocols | action_network_protocol |
-| network-traffic | src_packets | action_pkts_sent |
-| network-traffic | dst_packets | action_pkts_received |
-| network-traffic | extensions.x-paloalto-network.creation_time | action_network_creation_time |
-| network-traffic | extensions.x-paloalto-network.connection_id | action_network_connection_id |
-| network-traffic | extensions.x-paloalto-network.packet_data | action_network_packet_data |
-| network-traffic | extensions.x-paloalto-network.is_proxy | action_proxy |
-| network-traffic | extensions.x-paloalto-network.metadata_hostname | host_metadata_hostname |
-| network-traffic | extensions.x-paloalto-network.external_hostname | action_external_hostname |
-| <br> | | |
-| process | command_line | action_process_image_command_line |
-| process | command_line | actor_process_command_line |
-| process | command_line | causality_actor_process_command_line |
-| process | command_line | os_actor_process_command_line |
-| process | created | action_process_file_create_time |
-| process | created | actor_process_file_create_time |
-| process | created | causality_actor_process_file_create_time |
-| process | created | os_actor_process_file_create_time |
-| process | name | action_process_image_name |
-| process | name | actor_process_image_name |
-| process | name | causality_actor_process_image_name |
-| process | name | os_actor_process_image_name |
-| process | pid | action_module_process_os_pid |
-| process | pid | action_process_os_pid |
-| process | pid | actor_process_os_pid |
-| process | pid | causality_actor_process_os_pid |
-| process | pid | os_actor_process_os_pid |
-| process | pid | action_process_requested_parent_pid |
-| process | pid | action_thread_parent_pid |
-| process | pid | action_thread_child_pid |
-| process | creator_user_ref | action_process_username |
-| process | parent_ref | causality_actor_process_image_name |
-| process | parent_ref | os_actor_process_image_name |
-| process | parent_ref | action_process_requested_parent_pid |
-| process | parent_ref | action_thread_parent_pid |
-| process | child_refs | action_thread_child_pid |
-| process | binary_ref | action_process_image_name |
-| process | binary_ref | actor_process_image_name |
-| process | binary_ref | action_process_image_md5 |
-| process | binary_ref | action_process_image_sha256 |
-| process | binary_ref | action_process_image_path |
-| process | binary_ref | actor_process_image_path |
-| process | binary_ref | causality_actor_process_image_path |
-| process | binary_ref | os_actor_process_image_path
-| process | extensions.x-paloalto-process.instance_id | actor_process_instance_id |
-| process | extensions.x-paloalto-process.causality_id | actor_process_causality_id |
-| process | extensions.x-paloalto-process.auth_id | actor_process_auth_id |
-| process | extensions.x-paloalto-process.container_id | actor_process_container_id |
-| process | extensions.x-paloalto-process.signature_vendor | actor_process_signature_vendor |
-| process | extensions.x-paloalto-process.signature_status | actor_process_signature_status |
-| process | extensions.x-paloalto-process.signature_product | actor_process_signature_product |
-| process | extensions.x-paloalto-process.extension | actor_process_image_extension |
-| process | extensions.x-paloalto-process.termination_code | action_process_termination_code |
-| process | extensions.x-paloalto-process.termination_date | action_process_termination_date |
-| process | extensions.x-paloalto-process.tid | action_remote_process_thread_id |
-| process | extensions.x-paloalto-process.instance_exec_time | action_process_instance_execution_time |
-| process | extensions.x-paloalto-process.execution_time | actor_process_execution_time |
-| process | extensions.x-paloalto-process.is_kernel | action_process_handle_is_kernel |
-| process | extensions.x-paloalto-process.is_root | action_process_is_container_root |
-| process | extensions.x-paloalto-process.is_native | actor_process_is_native |
-| <br> | | |
-| url | value | dst_action_url_category |
-| <br> | | |
-| user-account | user_id | actor_primary_user_sid |
-| user-account | extensions.x-paloalto-user.process_user_id | action_process_user_sid |
-| user-account | display_name | actor_primary_username |
-| user-account | extensions.x-paloalto-user.process_user_name | action_process_username |
-| user-account | account_login | actor_process_logon_id |
-| <br> | | |
-| windows-registry-key | key | action_registry_key_name |
-| windows-registry-key | values | action_registry_value_name |
-| <br> | | |
-| x-oca-asset | hostname | agent_hostname |
-| x-oca-asset | ip_refs | action_local_ip |
-| x-oca-asset | ip_refs | action_remote_ip |
-| x-oca-asset | ip_refs | agent_ip_addresses_v6 |
-| x-oca-asset | ip_refs | agent_ip_addresses |
-| x-oca-asset | ip_refs | dst_agent_ip_addresses_v6 |
-| x-oca-asset | mac_refs | mac |
-| x-oca-asset | mac_refs | associated_mac |
-| x-oca-asset | mac_refs | dst_associated_mac |
-| x-oca-asset | mac_refs | dst_mac |
-| x-oca-asset | extensions.x-paloalto-agent.asset_id | agent_id |
-| x-oca-asset | extensions.x-paloalto-agent.os_type | agent_os_type |
-| x-oca-asset | extensions.x-paloalto-agent.user_agent | action_user_agent |
-| x-oca-asset | extensions.x-paloalto-agent.agent_version | agent_version |
-| x-oca-asset | extensions.x-paloalto-agent.content_version | agent_content_version |
-| x-oca-asset | extensions.x-paloalto-agent.start_time | agent_session_start_time |
-| x-oca-asset | extensions.x-paloalto-agent.os_sub_type | agent_os_sub_type |
-| x-oca-asset | extensions.x-paloalto-agent.is_vdi | agent_is_vdi |
-| x-oca-asset | extensions.x-paloalto-agent.agent_header | http_req_user_agent_header |
-| <br> | | |
-| x-paloalto-evtlog | data_fields | action_evtlog_data_fields |
-| x-paloalto-evtlog | description | action_evtlog_description |
-| x-paloalto-evtlog | source | action_evtlog_source |
-| x-paloalto-evtlog | evtlog_id | action_evtlog_event_id |
-| x-paloalto-evtlog | level | action_evtlog_level |
-| x-paloalto-evtlog | tid | action_evtlog_tid |
-| x-paloalto-evtlog | uid | action_evtlog_uid |
-| x-paloalto-evtlog | pid | action_evtlog_pid |
-| x-paloalto-evtlog | message | action_evtlog_message |
-| x-paloalto-evtlog | version | action_evtlog_version |
-| <br> | | |
-| x-oca-event | extensions.x-paloalto-event.event_description | vpn_event_description |
-| x-oca-event | url_ref | dst_action_url_category |
-| x-oca-event | file_ref | action_file_name |
-| x-oca-event | process_ref | action_process_os_pid |
-| x-oca-event | process_ref | actor_process_os_pid |
-| x-oca-event | process_ref | action_module_process_os_pid |
-| x-oca-event | process_ref | causality_actor_process_os_pid |
-| x-oca-event | process_ref | os_actor_process_os_pid |
-| x-oca-event | process_ref | action_process_image_name |
-| x-oca-event | process_ref | actor_process_image_name |
-| x-oca-event | process_ref | action_process_image_command_line |
-| x-oca-event | process_ref | actor_process_command_line |
-| x-oca-event | parent_process_ref | causality_actor_process_command_line |
-| x-oca-event | parent_process_ref | os_actor_process_command_line |
-| x-oca-event | parent_process_ref | action_process_requested_parent_pid |
-| x-oca-event | parent_process_ref | action_thread_parent_pid |
-| x-oca-event | parent_process_ref | causality_actor_process_image_name |
-| x-oca-event | parent_process_ref | os_actor_process_image_name |
-| x-oca-event | domain_ref | auth_domain |
-| x-oca-event | domain_ref | dst_host_metadata_domain |
-| x-oca-event | domain_ref | host_metadata_domain |
-| x-oca-event | registry_ref | action_registry_key_name |
-| x-oca-event | registry_ref | action_registry_value_name |
-| x-oca-event | agent | agent_hostname |
-| x-oca-event | created | event_timestamp |
-| x-oca-event | extensions.x-paloalto-event.version | event_version |
-| x-oca-event | extensions.x-paloalto-event.uuid | event_rpc_interface_uuid |
-| x-oca-event | extensions.x-paloalto-event.path | event_address_mapped_image_path |
-| x-oca-event | category | event_type |
-| x-oca-event | action | event_sub_type |
-| x-oca-event | code | event_id |
-| x-oca-event | network_ref | action_network_protocol |
-| <br> | | |
+# AWS GuardDuty
 
+## Supported STIX Mappings
+
+See the [table of mappings](aws_guardduty_supported_stix.md) for the STIX objects and operators supported by this connector.
+
+**Table of Contents**
+- [AWS GuardDuty API Endpoints](#AWSGuardDuty-api-endpoints)
+- [Format of calling Stix shifter from Command Line](#format-for-calling-stix-shifter-from-the-command-line)
+- [AWS Authentication Types](#aws-authentication-types)
+- [AWS GuardDuty data search methods](#aws-guardduty-data-search-methods)
+- [Pattern expression with STIX attributes - Single Observation](#single-observation)
+- [Pattern expression with STIX and CUSTOM attributes - Multiple Observation](#multiple-observation)
+- [STIX Execute Query](#stix-execute-query)
+- [Observations](#observations)
+- [Limitations](#limitations)
+- [References](#references)
+
+### AWSGuardDuty API Endpoints
+
+   | Connector Method | AWS Guardduty API Endpoint                                                                                                                | Method |
+   |-------------------------------------------------------------------------------------------------------------------------------------------|------|   ------|
+   | Ping Endpoint    | List detector: /detector                                                                                                                  | GET|
+   | Results Endpoint | 1. List Detector: /detector <br/> 2. List Findings: /detector/detectorId/findings<br/> 3. Get Findings: /detector/detectorId/findings/get | GET , POST |
+
+### Format for calling stix-shifter from the command line
+```
+python main.py `<translator_module>` `<query or result>` `<STIX identity object>` `<data>`
+
+```
+### AWS Authentication Types
+
+##### This connector supports two types of datasource authentication:
+
+   1. Using user's security credentials (Access and Secret keys)
+       ##### Sample Input:
+        ```
+        transmit
+        "aws_guardduty"
+        "{\"region\": \"<guardduty configured region>\"}"
+        "{\"auth\":{\"aws_access_key_id\": \"xxxx\", \"aws_secret_access_key\": \"yyyy\"}}"
+        results <translated_query> offset length
+        ``` 
+   
+   2. Using user's security credentials (Access and Secret keys) and IAM role (ARN value of the IAM role)
+       ##### Sample Input:
+        ```
+        transmit
+        "aws_guardduty"
+        "{\"region\": \"<guardduty configured region>\"}"
+        "{\"auth\":{\"aws_access_key_id\": \"xxxx\", \"aws_secret_access_key\": 
+        \"yyyy\",\"aws_iam_role\":\"zzzz\"}}"
+        results <translated_query> offset length
+        ```
+### AWS GuardDuty Data search Methods
+   1. Input without detector id
+       #### Sample Input:
+        ```
+        transmit
+        "aws_guardduty"
+        "{\"region\": \"<guardduty configured region>\"}"
+        "{\"auth\":{\"aws_access_key_id\": \"xxxx\", \"aws_secret_access_key\": \"yyyy\"}}"
+        results <translated_query> offset length
+        ```
+
+   2. Input with one or more Detector ids separated by comma as delimiter
+        #### Sample Input:
+        ```
+        transmit
+        "aws_guardduty"
+        "{\"region\": \"<guardduty configured region>\",\"detector_ids\":\"123,456\"}"
+        "{\"auth\":{\"aws_access_key_id\": \"xxxx\", \"aws_secret_access_key\": \"yyyy\"}}"
+        results <translated_query> offset length
+        
+
+### Pattern expression with STIX and CUSTOM attributes
+
+#### Single Observation
+
+#### STIX Translate query 
+```shell
+translate aws_guardduty query "{}" "[network-traffic:src_port != 1234 AND autonomous-system:number < 50] START t'2023-01-15T00:00:00.000Z' STOP t'2023-06-30T00:00:00.000Z'"
+```
+#### STIX Translate query - Output
+```json
+{
+    "queries": [
+        {
+            "FindingCriteria": {
+                "Criterion": {
+                    "service.action.networkConnectionAction.remoteIpDetails.organization.asn": {
+                        "LessThan": 50
+                    },
+                    "updatedAt": {
+                        "GreaterThanOrEqual": 1673740800000,
+                        "LessThanOrEqual": 1688083200000
+                    },
+                    "service.action.networkConnectionAction.localPortDetails.port": {
+                        "NotEquals": [
+                            "1234"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "FindingCriteria": {
+                "Criterion": {
+                    "service.action.awsApiCallAction.remoteIpDetails.organization.asn": {
+                        "LessThan": 50
+                    },
+                    "updatedAt": {
+                        "GreaterThanOrEqual": 1673740800000,
+                        "LessThanOrEqual": 1688083200000
+                    },
+                    "service.action.networkConnectionAction.localPortDetails.port": {
+                        "NotEquals": [
+                            "1234"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+#### STIX Transmit results - Query
+```shell
+transmit
+aws_guardduty
+"{\"region\":\"xxxx\"}"
+"{\"auth\":{\"aws_access_key_id\": \"abc\",\"aws_secret_access_key\":\"xyz\",\"aws_iam_role\":\"123zxy\"}}"
+results
+"{ \"queries\": [ { \"FindingCriteria\": { \"Criterion\": { \"service.action.networkConnectionAction.remoteIpDetails.organization.asn\": { \"LessThan\": 50 }, \"updatedAt\": { \"GreaterThanOrEqual\": 1673740800000, \"LessThanOrEqual\": 1688083200000 }, \"service.action.networkConnectionAction.localPortDetails.port\": { \"NotEquals\": [ \"1234\" ] } } } }, { \"FindingCriteria\": { \"Criterion\": { \"service.action.awsApiCallAction.remoteIpDetails.organization.asn\": { \"LessThan\": 50 }, \"updatedAt\": { \"GreaterThanOrEqual\": 1673740800000, \"LessThanOrEqual\": 1688083200000 }, \"service.action.networkConnectionAction.localPortDetails.port\": { \"NotEquals\": [ \"1234\" ] } } } } ] }"
+0
+1
+
+```
+#### STIX Transmit results - Output
+```json
+{
+    "success": true,
+    "data": [{
+       "AccountId": "912345678901",
+       "Arn": "arn:aws:guardduty:us-east-1:912345678901:detector/abcdefghijklmn/finding/12345678910abcdef",
+       "CreatedAt": "2023-06-05T04:48:34.491Z",
+       "Description": "EC2 instance i-0b123456abcdefghi is communicating with an Unusual DNS Resolver 8.8.8.8.",
+       "Id": "12345678910abcdef",
+       "Partition": "aws",
+       "Region": "us-east-1",
+       "Resource": {
+           "InstanceDetails": {
+               "AvailabilityZone": "us-east-1c",
+               "ImageId": "ami-0b123456789abcde",
+               "InstanceId": "i-0b123456abcdefghi",
+               "InstanceState": "running",
+               "InstanceType": "t2.medium",
+               "OutpostArn": null,
+               "LaunchTime": "2023-06-05T03:50:36.000Z",
+               "NetworkInterfaces": [{
+                   "Ipv6Addresses": [],
+                   "NetworkInterfaceId": "eni-055726ef79287c018",
+                   "PrivateDnsName": "ip-1-1-1-1.ec2.internal",
+                   "PrivateIpAddress": "1.1.1.1",
+                   "PrivateIpAddresses": [{
+                       "PrivateDnsName": "ip-1-1-1-1.ec2.internal"
+                   }],
+                   "PublicDnsName": "ec2-2-2-2-2.compute-1.amazonaws.com",
+                   "PublicIp": "2.2.2.2",
+                   "SecurityGroups": [{
+                       "GroupId": "sg-07a9c2h8f2f18e7a6",
+                       "GroupName": "launch-wizard-31"
+                   }],
+                   "SubnetId": "subnet-58ch16f",
+                   "VpcId": "vpc-10db926a"
+               }],
+               "Platform": "windows",
+               "ProductCodes": [],
+               "Tags": [{
+                   "Key": "Name",
+                   "Value": "local-machine"
+               }]
+           },
+           "ResourceType": "Instance"
+       },
+       "SchemaVersion": "2.0",
+       "Service": {
+           "Action": {
+               "ActionType": "NETWORK_CONNECTION",
+               "NetworkConnectionAction": {
+                   "Blocked": false,
+                   "ConnectionDirection": "OUTBOUND",
+                   "LocalPortDetails": {
+                       "Port": 51923,
+                       "PortName": "Unknown"
+                   },
+                   "Protocol": "UDP",
+                   "LocalIpDetails": {
+                       "IpAddressV4": "1.1.1.1"
+                   },
+                   "RemoteIpDetails": {
+                       "City": {
+                           "CityName": "Los Angeles"
+                       },
+                       "Country": {
+                           "CountryName": "United States"
+                       },
+                       "GeoLocation": {
+                           "Lat": 34.0544,
+                           "Lon": -118.2441
+                       },
+                       "IpAddressV4": "8.8.8.8",
+                       "Organization": {
+                           "Asn": "15169",
+                           "AsnOrg": "GOOGLE",
+                           "Isp": "Google",
+                           "Org": "Google"
+                       }
+                   },
+                   "RemotePortDetails": {
+                       "Port": 53,
+                       "PortName": "DNS"
+                   }
+               }
+           },
+           "Archived": false,
+           "Count": 1,
+           "DetectorId": "abcdefghijklmn",
+           "EventFirstSeen": "2023-06-05T04:46:40.000Z",
+           "EventLastSeen": "2023-06-05T04:47:36.000Z",
+           "ResourceRole": "ACTOR",
+           "ServiceName": "guardduty",
+           "AdditionalInfo": {
+               "Value": "{\"inBytes\":\"152\",\"outBytes\":\"56\",\"unusual\":\"GOOGLE\"}",
+               "Type": "default"
+           }
+       },
+       "Severity": 5,
+       "Title": "EC2 instance i-0b123456abcdefghi is communicating with an Unusual DNS Resolver 8.8.8.8.",
+       "Type": "DefenseEvasion:EC2/UnusualDNSResolver",
+       "UpdatedAt": "2023-06-05T04:48:34.491Z",
+       "FindingType": "alert"
+    }],
+    "metadata": {
+        "result_count": 1,
+        "next_page_token": "abc",
+        "detector_ids": []
+    }
+}
+```
+#### STIX Translate results
+```json
+{
+    "type": "bundle",
+    "id": "bundle--46aa4c44-9ba5-4977-a00f-725759392a56",
+    "objects": [
+        {
+            "type": "identity",
+            "id": "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+            "name": "aws_guardduty",
+            "identity_class": "events",
+            "created": "2023-07-05T10:22:50.336Z",
+            "modified": "2023-07-05T10:22:50.336Z"
+        },
+        {
+            "id": "observed-data--a4919982-48c2-4ee9-bcb9-f7376a62930e",
+            "type": "observed-data",
+            "created_by_ref": "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+            "created": "2023-06-05T10:26:40.410Z",
+            "modified": "2023-06-05T10:26:40.410Z",
+            "objects": {
+                "0": {
+                    "type": "x-aws",
+                    "account_id": "912345678901",
+                    "partition": "aws",
+                    "region": "us-east-1"
+                },
+                "1": {
+                    "type": "x-ibm-finding",
+                    "finding_type": "alert",
+                    "x_aws_ref": "0",
+                    "x_arn": "arn:aws:guardduty:us-east-1:912345678901:detector/abcdefghijklmn/finding/12345678910abcdef",
+                    "description": "EC2 instance i-0b123456abcdefghi is communicating with an Unusual DNS Resolver 8.8.8.8.",
+                    "alert_id": "12345678910abcdef",
+                    "x_resource_ref": "3",
+                    "x_schema_version": "2.0",
+                    "x_service_ref": "9",
+                    "x_archived": false,
+                    "event_count": 1,
+                    "x_detector_id": "abcdefghijklmn",
+                    "severity": 5,
+                    "x_title": "EC2 instance i-0b123456abcdefghi is communicating with an Unusual DNS Resolver 8.8.8.8.",
+                    "name": "DefenseEvasion:EC2/UnusualDNSResolver",
+                    "time_observed": "2023-06-05T04:48:34.491Z"
+                },
+                "2": {
+                    "type": "x-aws-instance",
+                    "availability_zone": "us-east-1c",
+                    "image_id": "ami-0b123456789abcde",
+                    "instance_id": "i-0b123456abcdefghi",
+                    "state": "running",
+                    "instance_type": "t2.medium",
+                    "launch_time": "2023-06-05T03:50:36.000Z",
+                    "x_network_interface_refs": [
+                        "4"
+                    ],
+                    "os_ref": "8",
+                    "tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "local-machine"
+                        }
+                    ]
+                },
+                "3": {
+                    "type": "x-aws-resource",
+                    "instance_ref": "2",
+                    "resource_type": "Instance",
+                    "resource_role": "ACTOR"
+                },
+                "4": {
+                    "type": "x-aws-network-interface",
+                    "interface_id": "eni-055726ef79287c018",
+                    "private_domain_refs": [
+                        "5"
+                    ],
+                    "public_domain_ref": "6",
+                    "security_groups": [
+                        {
+                            "GroupId": "sg-07a9c2h8f2f18e7a6",
+                            "GroupName": "launch-wizard-31"
+                        }
+                    ],
+                    "subnet_id": "subnet-58ch16f",
+                    "vpc_id": "vpc-10db926a"
+                },
+                "5": {
+                    "type": "domain-name",
+                    "value": "ip-1-1-1-1.ec2.internal"
+                },
+                "6": {
+                    "type": "domain-name",
+                    "value": "ec2-2-2-2-2.compute-1.amazonaws.com",
+                    "resolves_to_refs": [
+                        "7"
+                    ]
+                },
+                "7": {
+                    "type": "ipv4-addr",
+                    "value": "2.2.2.2"
+                },
+                "8": {
+                    "type": "software",
+                    "name": "windows"
+                },
+                "9": {
+                    "type": "x-aws-finding-service",
+                    "action": {
+                        "action_type": "NETWORK_CONNECTION",
+                        "network_ref": "10"
+                    },
+                    "event_first_seen": "2023-06-05T04:46:40.000Z",
+                    "event_last_seen": "2023-06-05T04:47:36.000Z",
+                    "additional_info": {
+                        "Value": "{\"inBytes\":\"152\",\"outBytes\":\"56\",\"unusual\":\"GOOGLE\"}",
+                        "Type": "default"
+                    }
+                },
+                "10": {
+                    "type": "network-traffic",
+                    "x_is_target_port_blocked": false,
+                    "x_direction": "OUTBOUND",
+                    "src_port": 51923,
+                    "x_src_port_name": "Unknown",
+                    "protocols": [
+                        "udp"
+                    ],
+                    "src_ref": "11",
+                    "dst_ref": "13",
+                    "dst_port": 53,
+                    "x_dst_port_name": "DNS"
+                },
+                "11": {
+                    "type": "ipv4-addr",
+                    "value": "1.1.1.1"
+                },
+                "12": {
+                    "type": "x-oca-geo",
+                    "city_name": "Los Angeles",
+                    "country_name": "United States",
+                    "location": {
+                        "Lat": 34.0544,
+                        "Lon": -118.2441
+                    }
+                },
+                "13": {
+                    "type": "ipv4-addr",
+                    "x_geo_ref": "12",
+                    "value": "8.8.8.8",
+                    "belongs_to_refs": [
+                        "14"
+                    ]
+                },
+                "14": {
+                    "type": "autonomous-system",
+                    "number": 15169,
+                    "name": "GOOGLE",
+                    "x_isp": "Google",
+                    "x_organisation": "Google"
+                }
+            },
+            "first_observed": "2023-06-05T04:48:34.491Z",
+            "last_observed": "2023-06-05T04:48:34.491Z",
+            "number_observed": 1
+        }
+    ],
+    "spec_version": "2.0"
+}
+```
+#### Multiple Observation
+```shell
+translate aws_guardduty query {} "([x-aws-finding-service:action.action_type = 'AWS_API_CALL' AND user-account:display_name = 'awsathenauser' OR x-aws-s3-bucket:bucket_type = 'Destination'] AND [network-traffic:protocols[*] = 'UDP']) START t'2022-01-01T16:43:26.000Z' STOP t'2023-06-20T16:43:26.003Z'"  
+```
+#### STIX Multiple observation - Output
+```json
+{
+    "queries": [
+        {
+            "FindingCriteria": {
+                "Criterion": {
+                    "resource.s3BucketDetails.type": {
+                        "Equals": [
+                            "Destination"
+                        ]
+                    },
+                    "updatedAt": {
+                        "GreaterThanOrEqual": 1641055406000,
+                        "LessThanOrEqual": 1687279406003
+                    }
+                }
+            }
+        },
+        {
+            "FindingCriteria": {
+                "Criterion": {
+                    "service.action.actionType": {
+                        "Equals": [
+                            "AWS_API_CALL"
+                        ]
+                    },
+                    "updatedAt": {
+                        "GreaterThanOrEqual": 1641055406000,
+                        "LessThanOrEqual": 1687279406003
+                    }
+                }
+            }
+        },
+        {
+            "FindingCriteria": {
+                "Criterion": {
+                    "resource.accessKeyDetails.userName": {
+                        "Equals": [
+                            "awsathenauser"
+                        ]
+                    },
+                    "updatedAt": {
+                        "GreaterThanOrEqual": 1641055406000,
+                        "LessThanOrEqual": 1687279406003
+                    }
+                }
+            }
+        },
+        {
+            "FindingCriteria": {
+                "Criterion": {
+                    "resource.kubernetesDetails.kubernetesUserDetails.username": {
+                        "Equals": [
+                            "awsathenauser"
+                        ]
+                    },
+                    "updatedAt": {
+                        "GreaterThanOrEqual": 1641055406000,
+                        "LessThanOrEqual": 1687279406003
+                    }
+                }
+            }
+        },
+        {
+            "FindingCriteria": {
+                "Criterion": {
+                    "service.action.networkConnectionAction.protocol": {
+                        "Equals": [
+                            "UDP"
+                        ]
+                    },
+                    "updatedAt": {
+                        "GreaterThanOrEqual": 1641055406000,
+                        "LessThanOrEqual": 1687279406003
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+### STIX Execute query
+```shell
+execute
+aws_guardduty
+aws_guardduty
+"{\"type\":\"identity\",\"id\":\"identity--f431f809-377b-45e0-aa1c-6a4751cae5ff\",\"name\":\"aws_guardduty\",\"identity_class\":\"system\",\"created\":\"2023-07-05T13:22:50.336Z\",\"modified\":\"2023-07-05T13:22:50.336Z\"}"
+"{\"region\":\"us-east-1\"}"
+"{\"auth\":{\"aws_access_key_id\": \"ABC\",\"aws_secret_access_key\":\"xyz\"}}"
+"[ipv4-addr:value = '4.5.6.7' AND x-aws-s3-bucket:bucket_type = 'Destination'] START t'2022-01-01T16:43:26.000Z' STOP t'2023-06-20T16:43:26.003Z'"
+```
+
+#### STIX Execute query - Output
+```json
+{
+    "id": "observed-data--7335d4d1-37a7-42c9-b819-04a29f7dedf8",
+    "type": "observed-data",
+    "created_by_ref": "identity--f431f809-377b-45e0-aa1c-6a4751cae5ff",
+    "created": "2023-07-07T07:08:56.795Z",
+    "modified": "2023-07-07T07:08:56.795Z",
+    "objects": {
+        "0": {
+            "type": "x-aws",
+            "account_id": "912345678901",
+            "partition": "aws",
+            "region": "us-east-1"
+        },
+        "1": {
+            "type": "x-ibm-finding",
+            "x_aws_ref": "0",
+            "x_arn": "arn:aws:guardduty:us-east-1:912345678901:detector/aabbccdd/finding/xyz",
+            "description": "An API was used to access a bucket from an IP address on a custom threat list.",
+            "alert_id": "xyz",
+            "x_resource_ref": "3",
+            "x_schema_version": "2.0",
+            "x_service_ref": "5",
+            "x_archived": false,
+            "event_count": 2,
+            "x_detector_id": "aabbccdd",
+            "severity": 8,
+            "x_title": "API DeleteObjects was invoked from an IP address on a custom threat list.",
+            "name": "UnauthorizedAccess:S3/MaliciousIPCaller.Custom",
+            "time_observed": "2023-06-08T08:22:11.192Z",
+            "finding_type": "alert"
+        },
+        "2": {
+            "type": "user-account",
+            "x_access_key_id": "AABBZZ",
+            "user_id": "ABCD",
+            "display_name": "user@login.com",
+            "x_user_type": "IAMUser"
+        },
+        "3": {
+            "type": "x-aws-resource",
+            "access_key_ref": "2",
+            "s3_bucket_refs": [
+                "4"
+            ],
+            "resource_type": "S3Bucket",
+            "resource_role": "TARGET"
+        },
+        "4": {
+            "type": "x-aws-s3-bucket",
+            "arn": "arn:aws:s3:::sampleguardtest",
+            "name": "sampleguardtest",
+            "bucket_type": "Destination",
+            "created_at": "2023-06-08T07:27:58.000Z",
+            "canonical_id_of_bucket_owner": "1234",
+            "server_side_encryption_type": "AES256",
+            "permissions": {
+                "bucket_level": {
+                    "access_control_policies": {
+                        "allows_public_read_access": false,
+                        "allows_public_write_access": false
+                    },
+                    "bucket_policies": {
+                        "allows_public_read_access": false,
+                        "allows_public_write_access": false
+                    },
+                    "block_public_access_settings": {
+                        "ignore_public_acls": true,
+                        "restrict_public_buckets": true,
+                        "block_public_acls": true,
+                        "block_public_policy": true
+                    }
+                },
+                "account_level": {
+                    "ignore_public_acls": false,
+                    "restrict_public_buckets": false,
+                    "block_public_acls": false,
+                    "block_public_policy": false
+                }
+            },
+            "bucket_permission": "NOT_PUBLIC"
+        },
+        "5": {
+            "type": "x-aws-finding-service",
+            "action": {
+                "action_type": "AWS_API_CALL",
+                "aws_api_call": {
+                    "api_called": "DeleteObjects",
+                    "caller_type": "Remote IP",
+                    "remote_ref": "7",
+                    "service_name": "s3.amazonaws.com",
+                    "affected_resources": {}
+                }
+            },
+            "evidence_refs": [
+                "9"
+            ],
+            "event_first_seen": "2023-06-08T08:17:05.000Z",
+            "event_last_seen": "2023-06-08T08:17:05.000Z",
+            "additional_info": {
+                "Value": "{\"threatName\":\"Customer Threat Intel\",\"threatListName\":\"threat-list2\",\"authenticationMethod\":\"AuthHeader\"}",
+                "Type": "default"
+            }
+        },
+        "6": {
+            "type": "x-oca-geo",
+            "city_name": "Ashburn",
+            "country_name": "United States",
+            "location": {
+                "Lat": 39.0469,
+                "Lon": -77.4903
+            }
+        },
+        "7": {
+            "type": "ipv4-addr",
+            "x_geo_ref": "6",
+            "value": "4.5.6.7",
+            "belongs_to_refs": [
+                "8"
+            ]
+        },
+        "8": {
+            "type": "autonomous-system",
+            "number": 14618,
+            "name": "AMAZON-AES",
+            "x_isp": "Amazon.com",
+            "x_organisation": "Amazon.com"
+        },
+        "9": {
+            "type": "x-aws-evidence",
+            "threat_intelligence_list_name": "threat-list2",
+            "threat_names": [
+                "Customer Threat Intel"
+            ]
+        }
+    },
+    "first_observed": "2023-06-08T08:22:10.062Z",
+    "last_observed": "2023-06-08T08:22:11.192Z",
+    "number_observed": 1
+}
+```
+### Observations
+- Since AWS GuardDuty doesn't support OR operator, individual queries will be formed for each stix attribute when the pattern contains either
+  only OR operator or combination of AND, OR operator.
+- If AND operator is used between same stix attribute, exception will be thrown.
+- If AND operator is used between different stix attribute which contains same field mappings(Example: network-traffic:src_ref AND ipv4-addr), 
+  exception will be thrown.
+- Exception will be thrown when more than 50 values are provided using IN operator in AWS GuardDuty connector.
+- Exception will be thrown when more than 50 attributes are present in a single stix translate query in AWS GuardDuty connector.
+
+### Limitations
+- AWS GuardDuty Datasource doesn't support OR operator.
+- AWS GuardDuty Datasource does not support LIKE/MATCHES operators.
+- AWS GuardDuty Datasource can hold a minimum of one attribute and up to a maximum of 50 attributes in a single Finding Criteria.
+- AWS GuardDuty Datasource supports maximum of 50 values while using equals and not equals operator.
+
+### References
+- [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html)
+- [Amazon GuardDuty API Reference](https://docs.aws.amazon.com/guardduty/latest/APIReference/Welcome.html)
+- [Amazon GuardDuty List Finding ](https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListFindings.html)
+- [Amazon GuardDuty List Detectors ](https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html)
+- [Amazon GuardDuty Get Findings](https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetFindings.html)
