@@ -23,15 +23,11 @@
 | **ipv4-addr**:value | resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress,resource.instanceDetails.networkInterfaces.publicIp,service.action.networkConnectionAction.remoteIpDetails.ipAddressV4,service.action.awsApiCallAction.remoteIpDetails.ipAddressV4,service.action.kubernetesApiCallAction.remoteIpDetails.ipAddressV4 |
 | **ipv4-addr**:x_geo_ref.country_name |service.action.networkConnectionAction.remoteIpDetails.country.countryName, service.action.awsApiCallAction.remoteIpDetails.country.countryName|
 | **ipv4-addr**:belongs_to_refs[*].number |service.action.networkConnectionAction.remoteIpDetails.organization.asn,service.action.awsApiCallAction.remoteIpDetails.organization.asn|
-
 | **ipv6-addr**:value|resource.instanceDetails.networkInterfaces.ipv6Addresses|
-
 | **autonomous-system**:number | service.action.networkConnectionAction.remoteIpDetails.organization.asn,service.action.awsApiCallAction.remoteIpDetails.organization.asn |
 | **autonomous-system**:name | service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg,service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg |
-
 | **x-oca-geo**:country_name | service.action.networkConnectionAction.remoteIpDetails.country.countryName,service.action.awsApiCallAction.remoteIpDetails.country.countryName |
 | **x-oca-geo**:city_name | service.action.awsApiCallAction.remoteIpDetails.city.cityName,service.action.networkConnectionAction.remoteIpDetails.city.cityName |
-
 | **network-traffic**:src_port | service.action.networkConnectionAction.localPortDetails.port |
 | **network-traffic**:dst_port | service.action.networkConnectionAction.remotePortDetails.port |
 | **network-traffic**:protocols[*] | service.action.networkConnectionAction.protocol |
