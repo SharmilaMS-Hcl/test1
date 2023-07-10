@@ -117,9 +117,11 @@
 ### Supported STIX Objects and Properties for Query Results
 | STIX Object | STIX Property | Data Source Field |
 |--|--|--|
-| ipv4-addr | value | PrivateIpAddress |
+| ipv4-addr | value | PrivateIpAddresses.PrivateIpAddress |
 | ipv4-addr | value | PublicIp |
-| ipv4-addr | value | IpAddressV4 |
+| ipv4-addr | value | LocalIpDetails.IpAddressV4 |
+| ipv4-addr | value | RemoteIpDetails.IpAddressV4 |
+| ipv4-addr | value | AwsApiCallAction.RemoteIpDetails.IpAddressV4 |
 | ipv4-addr | value | SourceIps |
 | ipv4-addr | location | GeoLocation |
 | <br> | | |
