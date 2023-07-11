@@ -127,7 +127,6 @@
 | ipv4-addr | value | Service.Action.KubernetesApiCallAction.SourceIPs |
 | ipv4-addr | value | Service.Action.AwsApiCallAction.RemoteIpDetails.IpAddressV4 |
 | ipv4-addr | value | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.IpAddressV4 |
-| ipv4-addr | location | Service.Action.AwsApiCallAction.RemoteIpDetails.GeoLocation |
 | <br> | | |
 | ipv6-addr | value | Resource.InstanceDetails.NetworkInterfaces.Ipv6Addresses |
 | <br> | | |
