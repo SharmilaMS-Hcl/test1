@@ -1,4 +1,4 @@
-##### Updated on 07/07/23
+##### Updated on 07/11/23
 ## AWS GuardDuty
 ### Supported STIX Operators
 *Comparison AND/OR operators are inside the observation while observation AND/OR operators are between observations (square brackets).*
