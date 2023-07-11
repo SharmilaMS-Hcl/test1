@@ -127,6 +127,18 @@
 | ipv4-addr | value | Service.Action.KubernetesApiCallAction.SourceIPs |
 | ipv4-addr | value | Service.Action.AwsApiCallAction.RemoteIpDetails.IpAddressV4 |
 | ipv4-addr | value | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.IpAddressV4 |
+| ipv4-addr | belongs_to_refs | Service.Action.PortProbeAction.PortProbeDetails.RemoteIpDetails.Organization.Asn |
+| ipv4-addr | belongs_to_refs | Service.Action.AwsApiCallAction.RemoteIpDetails.Organization.Asn|
+| ipv4-addr | belongs_to_refs | Service.Action.NetworkConnectionAction.RemoteIpDetails.Organization.Asn|
+| ipv4-addr | belongs_to_refs | Service.Action.KubernetesApiCallAction.RemoteIpDetails.Organization.Asn |
+| ipv4-addr | belongs_to_refs | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.Organization.Asn|
+| ipv4-addr | x_geo_ref | Service.Action.PortProbeAction.PortProbeDetails.RemoteIpDetails.Country.CountryName |
+| ipv4-addr | x_geo_ref | Service.Action.AwsApiCallAction.RemoteIpDetails.Country.CountryName |
+| ipv4-addr | x_geo_ref | Service.Action.NetworkConnectionAction.RemoteIpDetails.Country.CountryName |
+| ipv4-addr | x_geo_ref | Service.Action.KubernetesApiCallAction.RemoteIpDetails.Country.CountryName |
+| ipv4-addr | x_geo_ref | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.Country.CountryName |
+| ipv4-addr | x_geo_ref | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.city.CityName |
+| ipv4-addr | x_geo_ref | Service.Action.KubernetesApiCallAction.RemoteIpDetails.city.CityName |
 | <br> | | |
 | ipv6-addr | value | Resource.InstanceDetails.NetworkInterfaces.Ipv6Addresses |
 | <br> | | |
