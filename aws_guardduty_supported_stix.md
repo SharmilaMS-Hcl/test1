@@ -182,6 +182,7 @@
 | x-oca-geo| location | Service.Action.NetworkConnectionAction.RemoteIpDetails.GeoLocation |
 | x-oca-geo| location | Service.Action.KubernetesApiCallAction.RemoteIpDetails.GeoLocation |
 | x-oca-geo| location | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.GeoLocation |
+| x-oca-geo| location | Service.Action.AwsApiCallAction.RemoteIpDetails.GeoLocation |
 | <br> | | |
 | network-traffic | x_is_target_port_blocked | Service.Action.DnsRequestAction.Blocked |
 | network-traffic | x_is_target_port_blocked | Service.Action.NetworkConnectionAction.Blocked |
