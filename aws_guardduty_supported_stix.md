@@ -211,17 +211,17 @@
 | <br> | | |
 | user-account | user_id | Resource.AccessKeyDetails.PrincipalId |
 | user-account | user_id | Resource.KubernetesDetails.KubernetesUserDetails.Uid |
-| user-account | user_id | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.UserId.PrincipalId |
 | user-account | user_id | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.UserId |
+| user-account | user_id | Service.RuntimeDetails.Context.ModifyingProcess.UserId |
 | user-account | user_id | Service.RuntimeDetails.Context.TargetProcess.Lineage.UserId |
 | user-account | user_id | Service.RuntimeDetails.Context.TargetProcess.UserId |
 | user-account | user_id | Service.RuntimeDetails.Context.Process.Lineage.UserId |
 | user-account | user_id | Service.RuntimeDetails.Context.Process.UserId|
 | user-account | display_name | Resource.AccessKeyDetails.UserName |
 | user-account | display_name | Resource.KubernetesDetails.KubernetesUserDetails.UserName |
-| user-account | display_name | Service.RuntimeDetails.Context.ModifyingProcess.UserName |
-| user-account | display_name | Service.RuntimeDetails.Context.TargetProcess.UserName |
-| user-account | display_name | Service.RuntimeDetails.Process.UserName |
+| user-account | display_name | Service.RuntimeDetails.Context.ModifyingProcess.User |
+| user-account | display_name | Service.RuntimeDetails.Context.TargetProcess.User |
+| user-account | display_name | Service.RuntimeDetails.Process.User |
 | user-account | x_user_type |  Resource.AccessKeyDetails.UserType |
 | user-account | x_groups | Resource.KubernetesDetails.KubernetesUserDetails.Groups |
 | user-account | x_session_name | Resource.KubernetesDetails.KubernetesUserDetails.SessionName |
@@ -252,7 +252,7 @@
 | process | pid | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.NamespacePid |
 | process | pid | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.Pid |
 | process | pid | Service.RuntimeDetails.Context.ModifyingProcess.NamespacePid |
-| process | pid | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.Pid |
+| process | pid | Service.RuntimeDetails.Context.ModifyingProcess.Pid |
 | process | pid | Service.RuntimeDetails.Context.TargetProcess.Lineage.NamespacePid |
 | process | pid | Service.RuntimeDetails.Context.TargetProcess.Lineage.Pid |
 | process | pid | Service.RuntimeDetails.Context.TargetProcess.NamespacePid |
@@ -302,6 +302,7 @@
 | process | creator_user_ref | Service.RuntimeDetails.Context.Process.Lineage.Euid |
 | process | creator_user_ref | Service.RuntimeDetails.Context.Process.Lineage.UserId |
 | process | creator_user_ref | Service.RuntimeDetails.Context.Process.UserId |
+| process | creator_user_ref | Service.RuntimeDetails.Context.Process.Euid |
 | <br> | 
 | file | name | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FileName |
 | file | name | Service.RuntimeDetails.Context.ModuleName |
@@ -324,8 +325,8 @@
 | x-aws-resource | resource_role | Service.ResourceRole |
 | x-aws-resource | access_key_ref | Resource.AccessKeyDetails.PrincipalId |
 | x-aws-resource | standalone_container_ref | Resource.ContainerDetails.Id |
-| x-aws-resource | ecs_cluster_ref | Resource.EcsClusterDetails.name |
-| x-aws-resource | eks_cluster_ref | Resource.EksClusterDetails.name |
+| x-aws-resource | ecs_cluster_ref | Resource.EcsClusterDetails.Name |
+| x-aws-resource | eks_cluster_ref | Resource.EksClusterDetails.Name |
 | x-aws-resource | instance_ref | Resource.InstanceDetails.ImageId |
 | x-aws-resource | rds_database_ref | Resource.RdsDbInstanceDetails.DbClusterIdentifier |
 | x-aws-resource | rds_database_ref | Resource.RdsDbInstanceDetails.DbInstanceIdentifier |
@@ -354,15 +355,15 @@
 | <br> | | |
 | x-aws-s3-bucket | arn | Resource.S3BucketDetails.Arn |
 | x-aws-s3-bucket | created_at | Resource.S3BucketDetails.CreatedAt |
-| x-aws-s3-bucket | server_side_encryption_type | Resource.S3BucketDetails.EncryptionType |
-| x-aws-s3-bucket | kms_encryption_key_arn | Resource.S3BucketDetails.KmsMasterKeyArn |
+| x-aws-s3-bucket | server_side_encryption_type | Resource.S3BucketDetails.DefaultServerSideEncryption.EncryptionType |
+| x-aws-s3-bucket | kms_encryption_key_arn | Resource.S3BucketDetails.DefaultServerSideEncryption.KmsMasterKeyArn |
 | x-aws-s3-bucket | name | Resource.S3BucketDetails.Name |
-| x-aws-s3-bucket | canonical_id_of_bucket_owner | Resource.S3BucketDetails.Owner |
+| x-aws-s3-bucket | canonical_id_of_bucket_owner | Resource.S3BucketDetails.Owner.Id |
 | x-aws-s3-bucket | bucket_permission | Resource.S3BucketDetails.PublicAccess.EffectivePermission |
-| x-aws-s3-bucket | permissions.account_level.block_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicAcls |
-| x-aws-s3-bucket | permissions.account_level.block_public_policy | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicPolicy |
-| x-aws-s3-bucket | permissions.account_level.ignore_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.IgnorePublicAcls |
-| x-aws-s3-bucket | permissions.account_level.restrict_public_buckets | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.RestrictPublicBuckets |
+| x-aws-s3-bucket | permissions.account_level.block_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicAccess.BlockPublicAcls |
+| x-aws-s3-bucket | permissions.account_level.block_public_policy | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicAccess.BlockPublicPolicy |
+| x-aws-s3-bucket | permissions.account_level.ignore_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicAccess.IgnorePublicAcls |
+| x-aws-s3-bucket | permissions.account_level.restrict_public_buckets | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicAccess.RestrictPublicBuckets |
 | x-aws-s3-bucket | permissions.bucket_level.access_control_policies.allows_public_read_access | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.AccessControlList.AllowsPublicReadAccess |
 | x-aws-s3-bucket | permissions.bucket_level.access_control_policies.allows_public_write_access |Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.AccessControlList.AllowsPublicWriteAccess |
 | x-aws-s3-bucket | permissions.bucket_level.block_public_access_settings.block_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.BlockPublicAcls |
@@ -400,9 +401,9 @@
 | x-aws-lambda | execution_role | Resource.LambdaDetails.Role |
 | x-aws-lambda | tags | Resource.LambdaDetails.Tags |
 | x-aws-lambda | revision_id | Resource.LambdaDetails.RevisionId |
-| x-aws-lambda | security_groups | Resource.LambdaDetails.securityGroups |
-| x-aws-lambda | subnet_ids | Resource.LambdaDetails.SubnetIds |
-| x-aws-lambda | amazon_vpc_id | Resource.LambdaDetails.VpcId |
+| x-aws-lambda | security_groups | Resource.LambdaDetails.VpcConfig.SecurityGroups |
+| x-aws-lambda | subnet_ids | Resource.LambdaDetails.VpcConfig.SubnetIds |
+| x-aws-lambda | amazon_vpc_id | Resource.LambdaDetails.VpcConfig.VpcId |
 | <br> | | |
 | x-aws-ecs-cluster | active_services_count | Resource.EcsClusterDetails.ActiveServicesCount |
 | x-aws-ecs-cluster | cluster_arn | Resource.EcsClusterDetails.Arn |
