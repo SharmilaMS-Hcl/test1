@@ -139,7 +139,6 @@
 | ipv4-addr | x_geo_ref | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.Country.CountryName |
 | ipv4-addr | x_geo_ref | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.city.CityName |
 | ipv4-addr | x_geo_ref | Service.Action.KubernetesApiCallAction.RemoteIpDetails.city.CityName |
-| ipv4-addr | location | Service.Action.AwsApiCallAction.RemoteIpDetails.GeoLocation |
 | <br> | | |
 | ipv6-addr | value | Resource.InstanceDetails.NetworkInterfaces.Ipv6Addresses |
 | <br> | | |
