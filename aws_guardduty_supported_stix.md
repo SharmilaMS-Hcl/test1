@@ -193,7 +193,6 @@
 | network-traffic | dst_ref |Service.Action.PortProbeAction.PortProbeDetails.RemoteIpDetails.IpAddressV4 |
 | network-traffic | dst_ref |Service.Action.NetworkConnectionAction.RemoteIpDetails.IpAddressV4 |
 | network-traffic | dst_ref |Service.Action.KubernetesApiCallAction.RemoteIpDetails.IpAddressV4 |
-| network-traffic | dst_port | Service.Action.NetworkConnectionAction.RemotePortDetails.Port |
 | network-traffic | protocols | Service.Action.DnsRequestAction.Protocol |
 | network-traffic | protocols | Service.Action.PortProbeAction.PortProbeDetails.LocalPortDetails.PortName |
 | network-traffic | protocols | Service.Action.NetworkConnectionAction.Protocol |
@@ -204,13 +203,12 @@
 | network-traffic | x_direction | Service.Action.NetworkConnectionAction.ConnectionDirection |
 | network-traffic | x_dst_port_name | Service.Action.NetworkConnectionAction.RemotePortDetails.PortName |
 | network-traffic | x_src_port_name | Service.Action.NetworkConnectionAction.LocalPortDetails.PortName |
-| network-traffic | x_parameters | Service.Action.KubernetesApiCallAction.Parameters |
-| network-traffic | request_value | Service.Action.KubernetesApiCallAction.RequestUri |
-| network-traffic | x_status_code | Service.Action.KubernetesApiCallAction.StatusCode |
-| network-traffic | User-Agent | Service.Action.KubernetesApiCallAction.UserAgent |
-| network-traffic | request_method | Service.Action.KubernetesApiCallAction.Verb |
+| network-traffic | extensions.http-request-ext.x_parameters | Service.Action.KubernetesApiCallAction.Parameters |
+| network-traffic | extensions.http-request-ext.request_value | Service.Action.KubernetesApiCallAction.RequestUri |
+| network-traffic | extensions.http-request-ext.x_status_code | Service.Action.KubernetesApiCallAction.StatusCode |
+| network-traffic | extensions.http-request-ext.request_header.User-Agent | Service.Action.KubernetesApiCallAction.UserAgent |
+| network-traffic | extensions.http-request-ext.request_method | Service.Action.KubernetesApiCallAction.Verb |
 | <br> | | |
-| user-account | x_access_key_id | Resource.AccessKeyDetails.AccessKeyId |
 | user-account | user_id | Resource.AccessKeyDetails.PrincipalId |
 | user-account | user_id | Resource.KubernetesDetails.KubernetesUserDetails.Uid |
 | user-account | user_id | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.UserId.PrincipalId |
@@ -233,44 +231,24 @@
 | user-account | x_effective_user_id | Service.RuntimeDetails.Context.TargetProcess.Lineage.Euid |
 | user-account | x_effective_user_id | Service.RuntimeDetails.Process.Euid |
 | user-account | x_effective_user_id | Service.RuntimeDetails.Process.Lineage.Euid |
-| user-account | x_session_name | Resource.KubernetesDetails.KubernetesUserDetails.SessionName |
+| user-account | x_access_key_id | Resource.AccessKeyDetails.AccessKeyId |
 | <br> | | |
 | domain-name | value | Resource.InstanceDetails.NetworkInterfaces.PublicDnsName |
-| domain-name | resolves_to_refs | Resource.InstanceDetails.NetworkInterfaces.PrivateIpAddresses.PrivateIpAddress |
-| domain-name | resolves_to_refs | Resource.InstanceDetails.NetworkInterfaces.PublicIp |
 | domain-name | value | Resource.InstanceDetails.NetworkInterfaces.PrivateIpAddresses.PrivateDnsName |
 | domain-name | value | Service.Action.DnsRequestAction.Domain |
 | domain-name | value |Service.Action.AwsApiCallAction.DomainDetails.Domain |
+| domain-name | resolves_to_refs | Resource.InstanceDetails.NetworkInterfaces.PrivateIpAddresses.PrivateIpAddress |
+| domain-name | resolves_to_refs | Resource.InstanceDetails.NetworkInterfaces.PublicIp |
 | <br> | | |
-| process | x_absolute_path |  Service.RuntimeDetails.Context.ModifyingProcess.Lineage.ExecutablePath |
-| process | x_absolute_path |  Service.RuntimeDetails.Context.TargetProcess.Lineage.ExecutablePath |
-| process | x_absolute_path |  Service.RuntimeDetails.Process.Lineage.ExecutablePath |
-| process | child_refs | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.NamespacePid |
-| process | child_refs | Service.RuntimeDetails.Context.ModifyingProcess.NamespacePid |
-| process | child_refs | Service.RuntimeDetails.Context.TargetProcess.Lineage.NamespacePid |
-| process | child_refs | Service.RuntimeDetails.Context.TargetProcess.NamespacePid |
-| process | child_refs | Service.RuntimeDetails.Context.Process.Lineage.NamespacePid |
-| process | child_refs | Service.RuntimeDetails.Context.Process.NamespacePid |
-| process | creator_user_ref | Service.RuntimeDetails.Context.ModifyingProcess.Euid |
-| process | creator_user_ref | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.Euid |
-| process | creator_user_ref | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.UserId |
-| process | creator_user_ref | Service.RuntimeDetails.Context.ModifyingProcess.UserId |
-| process | creator_user_ref | Service.RuntimeDetails.Context.TargetProcess.Euid |
-| process | creator_user_ref | Service.RuntimeDetails.Context.TargetProcess.Lineage.Euid |
-| process | creator_user_ref | Service.RuntimeDetails.Context.TargetProcess.Lineage.UserId |
-| process | creator_user_ref | Service.RuntimeDetails.Context.TargetProcess.UserId |
-| process | creator_user_ref | Service.RuntimeDetails.Context.Process.Lineage.Euid |
-| process | creator_user_ref | Service.RuntimeDetails.Context.Process.Lineage.UserId |
-| process | creator_user_ref | Service.RuntimeDetails.Context.Process.UserId |
-| process | binary_ref | Service.RuntimeDetails.Context.ModifyingProcess.ExecutableSha256 |
-| process | binary_ref | Service.RuntimeDetails.Context.TargetProcess.ExecutableSha256 |
-| process | binary_ref | Service.RuntimeDetails.Context.Process.ExecutableSha256 |
-| process | name | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.Name |
 | process | name | Service.RuntimeDetails.Context.ModifyingProcess.Name |
 | process | name | Service.RuntimeDetails.Context.TargetProcess.Lineage.Name |
 | process | name | Service.RuntimeDetails.Context.TargetProcess.Name |
 | process | name | Service.RuntimeDetails.Process.Lineage.Name |
 | process | name | Service.RuntimeDetails.Process.Name |
+| process | name | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.Name |
+| process | binary_ref | Service.RuntimeDetails.Context.ModifyingProcess.ExecutableSha256 |
+| process | binary_ref | Service.RuntimeDetails.Context.TargetProcess.ExecutableSha256 |
+| process | binary_ref | Service.RuntimeDetails.Context.Process.ExecutableSha256 |
 | process | pid | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.NamespacePid |
 | process | pid | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.Pid |
 | process | pid | Service.RuntimeDetails.Context.ModifyingProcess.NamespacePid |
@@ -301,43 +279,56 @@
 | process | x_unique_id | Service.RuntimeDetails.Context.TargetProcess.Uuid |
 | process | x_unique_id | Service.RuntimeDetails.Process.Lineage.Uuid |
 | process | x_unique_id | Service.RuntimeDetails.Process.Uuid |
-| process | x_lineage_refs | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.GroupModifyingProcessLineageReferences |
-| process | x_lineage_refs | Service.RuntimeDetails.Context.TargetProcess.Lineage.GroupModifyingProcessLineageReferences |
-| process | x_lineage_refs | Service.RuntimeDetails.Process.Lineage.GroupModifyingProcessLineageReferences |
 | process | cwd | Service.RuntimeDetails.Context.ModifyingProcess.pwd |
 | process | cwd | Service.RuntimeDetails.Context.TargetProcess.pwd |
 | process | cwd |  Service.RuntimeDetails.Process.pwd |
+| process | x_absolute_path |  Service.RuntimeDetails.Context.ModifyingProcess.Lineage.ExecutablePath |
+| process | x_absolute_path |  Service.RuntimeDetails.Context.TargetProcess.Lineage.ExecutablePath |
+| process | x_absolute_path |  Service.RuntimeDetails.Process.Lineage.ExecutablePath |
+| process | child_refs | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.NamespacePid |
+| process | child_refs | Service.RuntimeDetails.Context.ModifyingProcess.NamespacePid |
+| process | child_refs | Service.RuntimeDetails.Context.TargetProcess.Lineage.NamespacePid |
+| process | child_refs | Service.RuntimeDetails.Context.TargetProcess.NamespacePid |
+| process | child_refs | Service.RuntimeDetails.Context.Process.Lineage.NamespacePid |
+| process | child_refs | Service.RuntimeDetails.Context.Process.NamespacePid |
+| process | creator_user_ref | Service.RuntimeDetails.Context.ModifyingProcess.Euid |
+| process | creator_user_ref | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.Euid |
+| process | creator_user_ref | Service.RuntimeDetails.Context.ModifyingProcess.Lineage.UserId |
+| process | creator_user_ref | Service.RuntimeDetails.Context.ModifyingProcess.UserId |
+| process | creator_user_ref | Service.RuntimeDetails.Context.TargetProcess.Euid |
+| process | creator_user_ref | Service.RuntimeDetails.Context.TargetProcess.Lineage.Euid |
+| process | creator_user_ref | Service.RuntimeDetails.Context.TargetProcess.Lineage.UserId |
+| process | creator_user_ref | Service.RuntimeDetails.Context.TargetProcess.UserId |
+| process | creator_user_ref | Service.RuntimeDetails.Context.Process.Lineage.Euid |
+| process | creator_user_ref | Service.RuntimeDetails.Context.Process.Lineage.UserId |
+| process | creator_user_ref | Service.RuntimeDetails.Context.Process.UserId |
 | <br> | 
 | file | name | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FileName |
 | file | name | Service.RuntimeDetails.Context.ModuleName |
-| file | hashes.'SHA-256' | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FileSha256 |
-| file | hashes.'SHA-256' | Service.RuntimeDetails.Context.ModifyingProcess.ExecutableSha256 |
-| file | hashes.'SHA-256' | Service.RuntimeDetails.Context.ModuleSha256 |
-| file | hashes.'SHA-256' | Service.RuntimeDetails.Context.TargetProcess.ExecutableSha256 |
-| file | hashes.'SHA-256' | Service.RuntimeDetails.Process.ExecutableSha256 |
+| file | hashes.SHA-256 | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FileSha256 |
+| file | hashes.SHA-256 | Service.RuntimeDetails.Context.ModifyingProcess.ExecutableSha256 |
+| file | hashes.SHA-256 | Service.RuntimeDetails.Context.ModuleSha256 |
+| file | hashes.SHA-256 | Service.RuntimeDetails.Context.TargetProcess.ExecutableSha256 |
+| file | hashes.SHA-256 | Service.RuntimeDetails.Process.ExecutableSha256 |
 | file | x_path |Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FilePath |
 | file | x_path |Service.RuntimeDetails.Context.ModifyingProcess.ExecutablePath |
 | file | x_path |Service.RuntimeDetails.Context.ModuleFilePath |
 | file | x_path | Service.RuntimeDetails.Context.TargetProcess.ExecutablePath|
 | file | x_path | Service.RuntimeDetails.Context.Process.ExecutablePath|
-| file | 'SHA-1' | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FileSha1 |
-| file | MD5 | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FileMd5 |
+| file | hashes.SHA-1 | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FileSha1 |
+| file | hashes.MD5 | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.FileMd5 |
 | file | x_unknown_hash | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.UnknownHash |
 | file | x_volume_arn | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.VolumeArn |
-| file | x_unknown_hash | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.UnknownHash |
 | <br> | | |
 | x-aws-resource | resource_type | Resource.ResourceType |
 | x-aws-resource | resource_role | Service.ResourceRole |
 | x-aws-resource | access_key_ref | Resource.AccessKeyDetails.PrincipalId |
-| x-aws-resource | scanned_refs | Resource.EbsVolumeDetails.ScannedVolumeDetails.GroupEbsVolumeScannedReferences |
-| x-aws-resource | skipped_refs | Resource.EbsVolumeDetails.SkippedVolumeDetails.GroupEbsVolumeSkippedReferences |
 | x-aws-resource | standalone_container_ref | Resource.ContainerDetails.Id |
 | x-aws-resource | ecs_cluster_ref | Resource.EcsClusterDetails.name |
 | x-aws-resource | eks_cluster_ref | Resource.EksClusterDetails.name |
 | x-aws-resource | instance_ref | Resource.InstanceDetails.ImageId |
 | x-aws-resource | rds_database_ref | Resource.RdsDbInstanceDetails.DbClusterIdentifier |
-| x-aws-resource | rds_database_ref | Resource.RdsDbInstanceDetails.DbInstanceIdentifie |
-| x-aws-resource | s3_bucket_refs | Resource.S3BucketDetails.GroupS3BucketReferences |
+| x-aws-resource | rds_database_ref | Resource.RdsDbInstanceDetails.DbInstanceIdentifier |
 | x-aws-resource | lambda_details_ref | Resource.LambdaDetails.FunctionName |
 | <br> | | |
 | x-aws-instance | availability_zone | Resource.InstanceDetails.AvailabilityZone |
@@ -347,7 +338,6 @@
 | x-aws-instance | state | Resource.InstanceDetails.InstanceState |
 | x-aws-instance | instance_type | Resource.InstanceDetails.InstanceType |
 | x-aws-instance | launch_time | Resource.InstanceDetails.LaunchTime |
-| x-aws-instance | x_network_interface_refs | Resource.InstanceDetails.NetworkInterfaces.GroupNetworkInterfaceReferences |
 | x-aws-instance | outpost_arn |  Resource.InstanceDetails.OutpostArn |
 | x-aws-instance | product_codes | Resource.InstanceDetails.ProductCodes |
 | x-aws-instance | tags | Resource.InstanceDetails.Tags |
@@ -356,7 +346,6 @@
 | x-aws-instance | image_id | Resource.InstanceDetails.ImageId |
 | <br> | | |
 | x-aws-network-interface | interface_id | Resource.InstanceDetails.NetworkInterfaces.NetworkInterfaceId |
-| x-aws-network-interface | private_domain_refs | Resource.InstanceDetails.NetworkInterfaces.PrivateIpAddresses.GroupPrivateDomainReferences |
 | x-aws-network-interface | security_groups | Resource.InstanceDetails.NetworkInterfaces.SecurityGroups |
 | x-aws-network-interface | subnet_id  | Resource.InstanceDetails.NetworkInterfaces.SubnetId |
 | x-aws-network-interface | vpc_id  | Resource.InstanceDetails.NetworkInterfaces.VpcId |
@@ -370,20 +359,20 @@
 | x-aws-s3-bucket | name | Resource.S3BucketDetails.Name |
 | x-aws-s3-bucket | canonical_id_of_bucket_owner | Resource.S3BucketDetails.Owner |
 | x-aws-s3-bucket | bucket_permission | Resource.S3BucketDetails.PublicAccess.EffectivePermission |
-| x-aws-s3-bucket | block_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicAcls |
-| x-aws-s3-bucket | block_public_policy | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicPolicy |
-| x-aws-s3-bucket | ignore_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.IgnorePublicAcls |
-| x-aws-s3-bucket | restrict_public_buckets | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.RestrictPublicBuckets |
-| x-aws-s3-bucket | allows_public_read_access | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.AccessControlList.AllowsPublicReadAccess |
-| x-aws-s3-bucket | allows_public_write_access |Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.AccessControlList.AllowsPublicWriteAccess |
+| x-aws-s3-bucket | permissions.account_level.block_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicAcls |
+| x-aws-s3-bucket | permissions.account_level.block_public_policy | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.BlockPublicPolicy |
+| x-aws-s3-bucket | permissions.account_level.ignore_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.IgnorePublicAcls |
+| x-aws-s3-bucket | permissions.account_level.restrict_public_buckets | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.AccountLevelPermissions.RestrictPublicBuckets |
+| x-aws-s3-bucket | permissions.bucket_level.access_control_policies.allows_public_read_access | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.AccessControlList.AllowsPublicReadAccess |
+| x-aws-s3-bucket | permissions.bucket_level.access_control_policies.allows_public_write_access |Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.AccessControlList.AllowsPublicWriteAccess |
+| x-aws-s3-bucket | permissions.bucket_level.block_public_access_settings.block_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.BlockPublicAcls |
+| x-aws-s3-bucket | permissions.bucket_level.block_public_access_settings.block_public_policy | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.BlockPublicPolicy |
+| x-aws-s3-bucket | permissions.bucket_level.block_public_access_settings.ignore_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.IgnorePublicAcls |
+| x-aws-s3-bucket | permissions.bucket_level.block_public_access_settings.restrict_public_buckets |  Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.RestrictPublicBuckets|
+| x-aws-s3-bucket | permissions.bucket_level.bucket_policies.allows_public_read_access |Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BucketPolicy.AllowsPublicReadAccess |
+| x-aws-s3-bucket | permissions.bucket_level.bucket_policies.allows_public_write_access | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BucketPolicy.AllowsPublicWriteAccess |
 | x-aws-s3-bucket | tags | Resource.S3BucketDetails.Tag |
 | x-aws-s3-bucket | bucket_type | Resource.S3BucketDetails.Type |
-| x-aws-s3-bucket | block_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.BlockPublicAcls |
-| x-aws-s3-bucket | block_public_policy | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.BlockPublicPolicy |
-| x-aws-s3-bucket | ignore_public_acls | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.IgnorePublicAcls |
-| x-aws-s3-bucket | restrict_public_buckets |  Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BlockPublicAccess.RestrictPublicBuckets|
-| x-aws-s3-bucket | allows_public_read_access |Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BucketPolicy.AllowsPublicReadAccess |
-| x-aws-s3-bucket | allows_public_write_access | Resource.S3BucketDetails.PublicAccess.PermissionConfiguration.BucketLevelPermissions.BucketPolicy.AllowsPublicWriteAccess |
 | <br> | | |
 | x-aws-rds-db-instance | cluster_id | Resource.RdsDbInstanceDetails.dbClusterIdentifier |
 | x-aws-rds-db-instance | instance_arn | Resource.RdsDbInstanceDetails.DbInstanceArn |
@@ -422,16 +411,15 @@
 | x-aws-ecs-cluster | running_tasks_count | Resource.EcsClusterDetails.RunningTasksCount |
 | x-aws-ecs-cluster | status | Resource.EcsClusterDetails.Status |
 | x-aws-ecs-cluster | tags | Resource.EcsClusterDetails.Tags |
-| x-aws-ecs-cluster | arn | Resource.EcsClusterDetails.TaskDetails.task.Arn |
-| x-aws-ecs-cluster | container_refs | Resource.EcsClusterDetails.GroupClusterContainerReferences |
-| x-aws-ecs-cluster | definition_arn | Resource.EcsClusterDetails.DefinitionArn |
-| x-aws-ecs-cluster | group_name | Resource.EcsClusterDetails.Group |
-| x-aws-ecs-cluster | started_at | Resource.EcsClusterDetails.StartedAt |
-| x-aws-ecs-cluster | started_by | Resource.EcsClusterDetails.StartedBy |
-| x-aws-ecs-cluster | tags | Resource.EcsClusterDetails.Tags |
-| x-aws-ecs-cluster | created_at | Resource.EcsClusterDetails.CreatedAt |
-| x-aws-ecs-cluster | version | Resource.EcsClusterDetails.Version |
-| x-aws-ecs-cluster | volumes | Resource.EcsClusterDetails.Volumes |
+| x-aws-ecs-cluster | task.arn | Resource.EcsClusterDetails.TaskDetails.TaskDetails.Arn |
+| x-aws-ecs-cluster | task.definition_arn | Resource.EcsClusterDetails.TaskDetails.DefinitionArn |
+| x-aws-ecs-cluster | task.group_name | Resource.EcsClusterDetails.TaskDetails.Group |
+| x-aws-ecs-cluster | task.started_at | Resource.EcsClusterDetails.TaskDetails.StartedAt |
+| x-aws-ecs-cluster | task.started_by | Resource.EcsClusterDetails.TaskDetails.StartedBy |
+| x-aws-ecs-cluster | task.tags | Resource.EcsClusterDetails.TaskDetails.Tags |
+| x-aws-ecs-cluster | task.created_at | Resource.EcsClusterDetails.TaskDetails.CreatedAt |
+| x-aws-ecs-cluster | task.version | Resource.EcsClusterDetails.TaskDetails.Version |
+| x-aws-ecs-cluster | task.volumes | Resource.EcsClusterDetails.TaskDetails.Volumes |
 | <br> | | |
 | x-aws-container | container_runtime | Resource.ContainerDetails.ContainerRuntime |
 | x-aws-container | container_runtime | Resource.EcsClusterDetails.TaskDetails.Containers.containerRuntime |
