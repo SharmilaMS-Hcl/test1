@@ -140,7 +140,6 @@
 | ipv4-addr | x_geo_ref | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.city.CityName |
 | ipv4-addr | x_geo_ref | Service.Action.KubernetesApiCallAction.RemoteIpDetails.city.CityName |
 | ipv4-addr | location | Service.Action.AwsApiCallAction.RemoteIpDetails.GeoLocation |
-
 | <br> | | |
 | ipv6-addr | value | Resource.InstanceDetails.NetworkInterfaces.Ipv6Addresses |
 | <br> | | |
@@ -552,7 +551,6 @@
 | x-aws-finding-service | network_ref | Service.Action.NetworkConnectionAction.Protocol |
 | x-aws-finding-service | network_ref | Service.Action.KubernetesApiCallAction.Protocol |
 | x-aws-finding-service | ebs_volume_malware_scan_ref | Service.EbsVolumeScanDetails.ScanId |
-
 | <br> | | |
 | x-aws-threat | infected_file_refs | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.GroupThreatFileReferences |
 | x-aws-threat | total_files_infected | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.ItemCount |
