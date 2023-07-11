@@ -423,12 +423,12 @@
 | x-aws-ecs-cluster | task.volumes | Resource.EcsClusterDetails.TaskDetails.Volumes |
 | <br> | | |
 | x-aws-container | container_runtime | Resource.ContainerDetails.ContainerRuntime |
-| x-aws-container | container_runtime | Resource.EcsClusterDetails.TaskDetails.Containers.containerRuntime |
+| x-aws-container | container_runtime | Resource.EcsClusterDetails.TaskDetails.Containers.ContainerRuntime |
 | x-aws-container | container_runtime | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.ContainerRuntime |
 | x-aws-container | container_id | Resource.ContainerDetails.Id |
 | x-aws-container | container_id | Resource.EcsClusterDetails.TaskDetails.Containers.Id |
 | x-aws-container | container_id | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.Id |
-| x-aws-container | image_name | Resource.ContainerDetails.Image |
+| x-aws-container | image | Resource.ContainerDetails.Image |
 | x-aws-container | image | Resource.EcsClusterDetails.TaskDetails.Containers.Image |
 | x-aws-container | image | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.Image |
 | x-aws-container | image_prefix | Resource.ContainerDetails.ImagePrefix |
@@ -440,23 +440,19 @@
 | x-aws-container | is_container_privileged | Resource.ContainerDetails.SecurityContext.Privileged |
 | x-aws-container | is_container_privileged | Resource.EcsClusterDetails.TaskDetails.Containers.SecurityContext.Privileged |
 | x-aws-container | is_container_privileged | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.SecurityContext.Privileged |
-| x-aws-container | volume_mount_refs | Resource.ContainerDetails.VolumeMounts.GroupContainerVolumeMountReferences |
-| x-aws-container | volume_mount_refs | Resource.EcsClusterDetails.TaskDetails.Containers.VolumeMounts.GroupContainerVolumeMountReferences |
-| x-aws-container | volume_mount_refs | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.VolumeMounts.GroupContainerVolumeMountReferences |
 | <br> | | |
-| x-aws-kubernetes-workload | container_refs | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.GroupKubernetesContainerReferences |
 | x-aws-kubernetes-workload | is_enabled_host_network_for_pods | Resource.KubernetesDetails.KubernetesWorkloadDetails.HostNetwork |
 | x-aws-kubernetes-workload | workload_name |  Resource.KubernetesDetails.KubernetesWorkloadDetails.Name |
-| x-aws-kubernetes-workload | workload_namespace |  Resource.KubernetesDetails.KubernetesWorkloadDetails..namespace |
+| x-aws-kubernetes-workload | workload_namespace |  Resource.KubernetesDetails.KubernetesWorkloadDetails.Namespace |
 | x-aws-kubernetes-workload | workload_type |  Resource.KubernetesDetails.KubernetesWorkloadDetails.Type |
 | x-aws-kubernetes-workload | workload_id |  Resource.KubernetesDetails.KubernetesWorkloadDetails.Uid |
-| x-aws-kubernetes-workload | runtime_context_ref |  Resource.KubernetesDetails.KubernetesWorkloadDetails.Volumes |
+| x-aws-kubernetes-workload | volumes |  Resource.KubernetesDetails.KubernetesWorkloadDetails.Volumes |
 | <br> | | |
 | x-aws-kubernetes | runtime_context_ref | Service.RuntimeDetails.Context.ModifiedAt |
 | x-aws-kubernetes | runtime_context_ref | Service.RuntimeDetails.Context.ModuleName |
 | x-aws-kubernetes | runtime_context_ref | Service.RuntimeDetails.Context.ScriptPath |
 | x-aws-kubernetes | runtime_observed_process_ref | Service.RuntimeDetails.Process.Name |
-| x-aws-kubernetes | runtime_observed_process_ref | Service.RuntimeDetails.Context.Pid |
+| x-aws-kubernetes | runtime_observed_process_ref | Service.RuntimeDetails.Process.Pid |
 | <br> | | |
 | x-aws-eks-cluster | arn | Resource.EksClusterDetails.Arn |
 | x-aws-eks-cluster | created_at | Resource.EksClusterDetails.CreatedAt |
@@ -466,21 +462,20 @@
 | x-aws-eks-cluster | vpc_id | Resource.EksClusterDetails.VpcId |
 | x-aws-eks-cluster | kubernetes_user_ref | Resource.KubernetesDetails.KubernetesUserDetails.Uid |
 | x-aws-eks-cluster | kubernetes_user_ref | Resource.KubernetesDetails.KubernetesUserDetails.Username |
-| x-aws-eks-cluster | kubernetes_user_ref | Resource.KubernetesDetails.KubernetesUserDetails.Name |
+| x-aws-eks-cluster | kubernetes_workload_ref | Resource.kubernetesDetails.kubernetesWorkloadDetails.Name |
 | x-aws-eks-cluster | runtime_context_ref | Service.RuntimeDetails.Context.ModifyingProcess.Name |
 | x-aws-eks-cluster | runtime_context_ref | Service.RuntimeDetails.Context.TargetProcess.Name |
 | <br> | | |
-| x-aws-ebs-volume-malware-scan | scan_completed_at | Service.EbsVolumeScanDetails.EbsVolumeScanDetails |
-| x-aws-ebs-volume-malware-scan | total_infected_files | Service.EbsVolumeScanDetails.ScanDetections.ThreatsDetectedItemCount.Files |
-| x-aws-ebs-volume-malware-scan | severity | Service.EbsVolumeScanDetails.ScanDetections.HighestSeverityThreatDetails.Severity |
-| x-aws-ebs-volume-malware-scan | name | Service.EbsVolumeScanDetails.ScanDetections.HighestSeverityThreatDetails.ThreatName |
-| x-aws-ebs-volume-malware-scan | total_scanned_files | Service.EbsVolumeScanDetails.ScanDetections.ScannedItemCount.Files |
-| x-aws-ebs-volume-malware-scan | total_files_scanned_in_gb | Service.EbsVolumeScanDetails.ScanDetections.ScannedItemCount.TotalGb |
-| x-aws-ebs-volume-malware-scan | total_volumes_scanned | Service.EbsVolumeScanDetails.ScanDetections.ScannedItemCount.Volumes |
-| x-aws-ebs-volume-malware-scan | infected_files_count |  Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ItemCount |
-| x-aws-ebs-volume-malware-scan | is_finding_shortened |  Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.Shortened |
-| x-aws-ebs-volume-malware-scan | threat_refs | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.GroupThreatNamesReferences |
-| x-aws-ebs-volume-malware-scan | unique_threats_count_based_on_name |  Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.UniqueThreatNameCount |
+| x-aws-ebs-volume-malware-scan | scan_completed_at | Service.EbsVolumeScanDetails.ScanCompletedAt |
+| x-aws-ebs-volume-malware-scan | highest_severity_threat.total_infected_files | Service.EbsVolumeScanDetails.ScanDetections.HighestSeverityThreatDetails.Count |
+| x-aws-ebs-volume-malware-scan | highest_severity_threat.severity | Service.EbsVolumeScanDetails.ScanDetections.HighestSeverityThreatDetails.Severity |
+| x-aws-ebs-volume-malware-scan | highest_severity_threat.name | Service.EbsVolumeScanDetails.ScanDetections.HighestSeverityThreatDetails.ThreatName |
+| x-aws-ebs-volume-malware-scan | scanned_items.total_scanned_files | Service.EbsVolumeScanDetails.ScanDetections.ScannedItemCount.Files |
+| x-aws-ebs-volume-malware-scan | scanned_items.total_files_scanned_in_gb | Service.EbsVolumeScanDetails.ScanDetections.ScannedItemCount.TotalGb |
+| x-aws-ebs-volume-malware-scan | scanned_items.total_volumes_scanned | Service.EbsVolumeScanDetails.ScanDetections.ScannedItemCount.Volumes |
+| x-aws-ebs-volume-malware-scan | threat_detected_by_name.infected_files_count |  Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ItemCount |
+| x-aws-ebs-volume-malware-scan | threat_detected_by_name.is_finding_shortened |  Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.Shortened |
+| x-aws-ebs-volume-malware-scan | threat_detected_by_name.unique_threats_count_based_on_name |  Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.UniqueThreatNameCount |
 | x-aws-ebs-volume-malware-scan | total_infected_files |  Service.EbsVolumeScanDetails.ScanDetections.ThreatsDetectedItemCount.Files |
 | x-aws-ebs-volume-malware-scan | scan_id | Service.EbsVolumeScanDetails.ScanId |
 | x-aws-ebs-volume-malware-scan | scan_started_time | Service.EbsVolumeScanDetails.ScanStartedAt |
@@ -517,31 +512,28 @@
 | x-ibm-finding | x_service_ref | Service.Action.RdsLoginAttemptAction.RemoteIpDetails.IpAddressV4 |
 | x-ibm-finding | x_service_ref | Service.EventFirstSeen |
 | <br> | | |
-| x-aws-finding-service | action_type | Service.Action.ActionType |
-| x-aws-finding-service | is_port_probe_blocked | Service.Action.PortProbeAction.Blocked |
-| x-aws-finding-service | network_refs | Service.Action.PortProbeAction.PortProbeDetails.GroupPortProbeDetailsReferences |
-| x-aws-finding-service | affected_resources | Service.Action.AwsApiCallAction.AffectedResources |
-| x-aws-finding-service | api_called |  Service.Action.AwsApiCallAction.Api |
-| x-aws-finding-service | caller_type | Service.Action.AwsApiCallAction.CallerType |
-| x-aws-finding-service | error_code | Service.Action.AwsApiCallAction.ErrorCode |
-| x-aws-finding-service | service_name | Service.Action.AwsApiCallAction.ServiceName |
-| x-aws-finding-service | caller_account_id | Service.Action.AwsApiCallAction.RemoteAccountDetails.AccountId |
-| x-aws-finding-service | is_caller_account_affiliated_to_aws | Service.Action.AwsApiCallAction.RemoteAccountDetails.Affiliated |
-| x-aws-finding-service | rds_login_refs | Service.Action.RdsLoginAttemptAction.LoginAttributes.GroupRdsLoginAttributes |
+| x-aws-finding-service | action.action_type | Service.Action.ActionType |
+| x-aws-finding-service | action.is_port_probe_blocked | Service.Action.PortProbeAction.Blocked |
+| x-aws-finding-service | action.affected_resources | Service.Action.AwsApiCallAction.AffectedResources |
+| x-aws-finding-service | action.api_called |  Service.Action.AwsApiCallAction.Api |
+| x-aws-finding-service | action.caller_type | Service.Action.AwsApiCallAction.CallerType |
+| x-aws-finding-service | action.error_code | Service.Action.AwsApiCallAction.ErrorCode |
+| x-aws-finding-service | action.service_name | Service.Action.AwsApiCallAction.ServiceName |
+| x-aws-finding-service | action.caller_account_id | Service.Action.AwsApiCallAction.RemoteAccountDetails.AccountId |
+| x-aws-finding-service | action.is_caller_account_affiliated_to_aws | Service.Action.AwsApiCallAction.RemoteAccountDetails.Affiliated |
 | x-aws-finding-service | additional_info | Service.AdditionalInfo |
 | x-aws-finding-service | event_first_seen | Service.EventFirstSeen |
 | x-aws-finding-service | event_last_seen | Service.EventLastSeen |
 | x-aws-finding-service | evidence_refs | Service.Evidence.ThreatIntelligenceDetails.GroupEvidenceReferences |
-| x-aws-finding-service | network_ref | Service.Action.DnsRequestAction.Protocol |
-| x-aws-finding-service | domain_ref | Service.Action.AwsApiCallAction.DomainDetails.Domain |
-| x-aws-finding-service | software_ref | Service.Action.AwsApiCallAction.UserAgent |
-| x-aws-finding-service | remote_ref |Service.Action.AwsApiCallAction.RemoteIpDetails.IpAddressV4 |
-| x-aws-finding-service | remote_ref |Service.Action.RdsLoginAttemptAction.RemoteIpDetails.IpAddressV4 |
-| x-aws-finding-service | network_ref | Service.Action.NetworkConnectionAction.Protocol |
-| x-aws-finding-service | network_ref | Service.Action.KubernetesApiCallAction.Protocol |
+| x-aws-finding-service | action.network_ref | Service.Action.DnsRequestAction.Protocol |
+| x-aws-finding-service | action.domain_ref | Service.Action.AwsApiCallAction.DomainDetails.Domain |
+| x-aws-finding-service | action.software_ref | Service.Action.AwsApiCallAction.UserAgent |
+| x-aws-finding-service | action.remote_ref |Service.Action.AwsApiCallAction.RemoteIpDetails.IpAddressV4 |
+| x-aws-finding-service | action.remote_ref |Service.Action.RdsLoginAttemptAction.RemoteIpDetails.IpAddressV4 |
+| x-aws-finding-service | action.network_ref | Service.Action.NetworkConnectionAction.Protocol |
+| x-aws-finding-service | action.network_ref | Service.Action.KubernetesApiCallAction.Protocol |
 | x-aws-finding-service | ebs_volume_malware_scan_ref | Service.EbsVolumeScanDetails.ScanId |
 | <br> | | |
-| x-aws-threat | infected_file_refs | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.FilePaths.GroupThreatFileReferences |
 | x-aws-threat | total_files_infected | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.ItemCount |
 | x-aws-threat | threat_name | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.Name |
 | x-aws-threat | severity | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.Severity |
