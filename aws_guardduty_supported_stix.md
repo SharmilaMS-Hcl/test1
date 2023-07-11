@@ -117,8 +117,8 @@
 ### Supported STIX Objects and Properties for Query Results
 | STIX Object | STIX Property | Data Source Field |
 |--|--|--|
-| ipv4-addr | value | resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress |
-| ipv4-addr | value | resource.instanceDetails.networkInterfaces.publicIp |
+| ipv4-addr | value | Resource.InstanceDetails.NetworkInterfaces.PrivateIpAddresses.PrivateIpAddress |
+| ipv4-addr | value | Resource.InstanceDetails.NetworkInterfaces.PublicIp |
 | ipv4-addr | value | service.action.networkConnectionAction.remoteIpDetails.ipAddressV4 |
 | ipv4-addr | value | service.action.PortProbeAction.PortProbeDetails.LocalIpDetails.ipAddressV4 |
 | ipv4-addr | value | service.action.PortProbeAction.PortProbeDetails.RemoteIpDetails.ipAddressV4 |
