@@ -240,6 +240,9 @@
 | domain-name | resolves_to_refs | Resource.InstanceDetails.NetworkInterfaces.PrivateIpAddresses.PrivateIpAddress |
 | domain-name | resolves_to_refs | Resource.InstanceDetails.NetworkInterfaces.PublicIp |
 | <br> | | |
+| software | name | Resource.InstanceDetails.Platform |
+| software | name |Service.Action.AwsApiCallAction.UserAgent |
+| <br> | | |
 | process | name | Service.RuntimeDetails.Context.ModifyingProcess.Name |
 | process | name | Service.RuntimeDetails.Context.TargetProcess.Lineage.Name |
 | process | name | Service.RuntimeDetails.Context.TargetProcess.Name |
@@ -405,6 +408,11 @@
 | x-aws-lambda | subnet_ids | Resource.LambdaDetails.VpcConfig.SubnetIds |
 | x-aws-lambda | amazon_vpc_id | Resource.LambdaDetails.VpcConfig.VpcId |
 | <br> | | |
+| x-aws-rds-login-attributes | login_application_name | Service.Action.RdsLoginAttemptAction.LoginAttributes.Application |
+| x-aws-rds-login-attributes | failed_login_attempts | Service.Action.RdsLoginAttemptAction.LoginAttributes.FailedLoginAttempts |
+| x-aws-rds-login-attributes | successful_login_attempts | Service.Action.RdsLoginAttemptAction.LoginAttributes.SuccessfulLoginAttempts |
+| x-aws-rds-login-attributes | login_attempted_user_name | Service.Action.RdsLoginAttemptAction.LoginAttributes.User |
+| <br> | | |
 | x-aws-ecs-cluster | active_services_count | Resource.EcsClusterDetails.ActiveServicesCount |
 | x-aws-ecs-cluster | cluster_arn | Resource.EcsClusterDetails.Arn |
 | x-aws-ecs-cluster | name | Resource.EcsClusterDetails.Name |
@@ -421,6 +429,22 @@
 | x-aws-ecs-cluster | task.created_at | Resource.EcsClusterDetails.TaskDetails.CreatedAt |
 | x-aws-ecs-cluster | task.version | Resource.EcsClusterDetails.TaskDetails.Version |
 | x-aws-ecs-cluster | task.volumes | Resource.EcsClusterDetails.TaskDetails.Volumes |
+| <br> | | |
+| x-aws-ebs-volume-scanned | device_name | Resource.EbsVolumeDetails.ScannedVolumeDetails.DeviceName |
+| x-aws-ebs-volume-scanned | encryption_type | Resource.EbsVolumeDetails.ScannedVolumeDetails.EncryptionType |
+| x-aws-ebs-volume-scanned | kms_key_arn | Resource.EbsVolumeDetails.ScannedVolumeDetails.KmsKeyArn |
+| x-aws-ebs-volume-scanned | snapshot_key_arn | Resource.EbsVolumeDetails.ScannedVolumeDetails.SnapshotArn |
+| x-aws-ebs-volume-scanned | volume_arn | Resource.EbsVolumeDetails.ScannedVolumeDetails.VolumeArn |
+| x-aws-ebs-volume-scanned | volume_size | Resource.EbsVolumeDetails.ScannedVolumeDetails.VolumeSizeInGB |
+| x-aws-ebs-volume-scanned | volume_type | Resource.EbsVolumeDetails.ScannedVolumeDetails.VolumeType |
+| <br> | | |
+| x-aws-ebs-volume-skipped | device_name | Resource.EbsVolumeDetails.SkippedVolumeDetails.DeviceName |
+| x-aws-ebs-volume-skipped | encryption_type | Resource.EbsVolumeDetails.SkippedVolumeDetails.EncryptionType |
+| x-aws-ebs-volume-skipped | kms_key_arn | Resource.EbsVolumeDetails.SkippedVolumeDetails.KmsKeyArn |
+| x-aws-ebs-volume-skipped | snapshot_key_arn | Resource.EbsVolumeDetails.SkippedVolumeDetails.SnapshotArn |
+| x-aws-ebs-volume-skipped | volume_arn | Resource.EbsVolumeDetails.SkippedVolumeDetails.VolumeArn |
+| x-aws-ebs-volume-skipped | volume_size | Resource.EbsVolumeDetails.SkippedVolumeDetails.VolumeSizeInGB |
+| x-aws-ebs-volume-skipped | volume_type | Resource.EbsVolumeDetails.SkippedVolumeDetails.VolumeType |
 | <br> | | |
 | x-aws-container | container_runtime | Resource.ContainerDetails.ContainerRuntime |
 | x-aws-container | container_runtime | Resource.EcsClusterDetails.TaskDetails.Containers.ContainerRuntime |
@@ -440,6 +464,13 @@
 | x-aws-container | is_container_privileged | Resource.ContainerDetails.SecurityContext.Privileged |
 | x-aws-container | is_container_privileged | Resource.EcsClusterDetails.TaskDetails.Containers.SecurityContext.Privileged |
 | x-aws-container | is_container_privileged | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.SecurityContext.Privileged |
+| <br> | | |
+| x-aws-container-volume-mount | path | Resource.ContainerDetails.VolumeMounts.MountPath |
+| x-aws-container-volume-mount | path | Resource.EcsClusterDetails.TaskDetails.Containers.VolumeMounts.MountPath |
+| x-aws-container-volume-mount | path | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.VolumeMounts.MountPath |
+| x-aws-container-volume-mount | name | Resource.ContainerDetails.VolumeMounts.Name |
+| x-aws-container-volume-mount | name | Resource.EcsClusterDetails.TaskDetails.Containers.ContainerRuntime.VolumeMounts.Name |
+| x-aws-container-volume-mount | name | Resource.KubernetesDetails.KubernetesWorkloadDetails.Containers.VolumeMounts.Name |
 | <br> | | |
 | x-aws-kubernetes-workload | is_enabled_host_network_for_pods | Resource.KubernetesDetails.KubernetesWorkloadDetails.HostNetwork |
 | x-aws-kubernetes-workload | workload_name |  Resource.KubernetesDetails.KubernetesWorkloadDetails.Name |
@@ -533,6 +564,25 @@
 | x-aws-finding-service | action.network_ref | Service.Action.NetworkConnectionAction.Protocol |
 | x-aws-finding-service | action.network_ref | Service.Action.KubernetesApiCallAction.Protocol |
 | x-aws-finding-service | ebs_volume_malware_scan_ref | Service.EbsVolumeScanDetails.ScanId |
+| <br> | | |
+| x-aws-runtime-context | address_family | Service.RuntimeDetails.Context.AddressFamily |
+| x-aws-runtime-context | mounted_file_system_type | Service.RuntimeDetails.Context.FileSystemType |
+| x-aws-runtime-context | flags | Service.RuntimeDetails.Context.Flags |
+| x-aws-runtime-context | iana_protocol_number | Service.RuntimeDetails.Context.IanaProtocolNumber |
+| x-aws-runtime-context | environmental_variables.LD_PRELOAD | Service.RuntimeDetails.Context.LdPreloadValue |
+| x-aws-runtime-context | new_library_path | Service.RuntimeDetails.Context.LibraryPath |
+| x-aws-runtime-context | memory_regions | Service.RuntimeDetails.Context.MemoryRegions |
+| x-aws-runtime-context | process_modified_time | Service.RuntimeDetails.Context.ModifiedAt |
+| x-aws-runtime-context | modifying_process_ref | Service.RuntimeDetails.Context.ModifyingProcess.Name |
+| x-aws-runtime-context | module_ref | Service.RuntimeDetails.Context.ModuleFilePath |
+| x-aws-runtime-context | module_ref | Service.RuntimeDetails.Context.ModuleName |
+| x-aws-runtime-context | host_path | Service.RuntimeDetails.Context.MountSource |
+| x-aws-runtime-context | container_path | Service.RuntimeDetails.Context.MountTarget |
+| x-aws-runtime-context | release_agent_path | Service.RuntimeDetails.Context.ReleaseAgentPath |
+| x-aws-runtime-context | runc_implementation_path | Service.RuntimeDetails.Context.RuncBinaryPath |
+| x-aws-runtime-context | script_path | Service.RuntimeDetails.Context.ScriptPath |
+| x-aws-runtime-context | shell_history_file_path | Service.RuntimeDetails.Context.ShellHistoryFilePath |
+| x-aws-runtime-context | socket_path | Service.RuntimeDetails.Context.SocketPath |
 | <br> | | |
 | x-aws-threat | total_files_infected | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.ItemCount |
 | x-aws-threat | threat_name | Service.EbsVolumeScanDetails.ScanDetections.ThreatDetectedByName.ThreatNames.Name |
