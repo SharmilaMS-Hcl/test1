@@ -5,7 +5,7 @@
 See the [table of mappings](crowdstrike_logscale_supported_stix.md) for the STIX objects and operators supported by this connector.
 
 **Table of Contents**
-- [Crowdstrike Logscale API Endpoints](#crowdStrike-logscale-api-endpoints)
+- [Crowdstrike Logscale API Endpoints](#crowdstrike-logscale-api-endpoints)
 - [Format of calling Stix shifter from Command Line](#format-for-calling-stix-shifter-from-the-command-line)
 - [Pattern expression with STIX attributes and CUSTOM attributes - Single Observation](#single-observation)
 - [Pattern expression with STIX and CUSTOM attributes - Multiple Observation](#multiple-observation)
