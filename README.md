@@ -693,10 +693,10 @@ crowdstrike_logscale
 ```
 
 ### Recommendations
-### Connector Usage
+#### Connector Usage
 1. For connector usage, it is recommended to maintain logs from single log source per repository in crowdstrike logscale. 
 2. Avoid parsing error during ingestion of logs in crowdstrike logscale.
-### Connector Extension
+#### Connector Extension
 1. Separate mapping files needs to be created for each log source.
 2. The structure of log source data ingest into logscale should be of type JSON .
 3. The mapping of list (list of values/list of dictionary) fields in from_stix_map should be mentioned with ['*'] suffix. Example, behaviors['*'].id'.  Here 'behaviors' is a list of dictionaries with id as attribute key inside behaviors.
