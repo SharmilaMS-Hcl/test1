@@ -10,7 +10,7 @@ See the [table of mappings](crowdstrike_logscale_supported_stix.md) for the STIX
 - [Pattern expression with STIX attributes and CUSTOM attributes - Single Observation](#single-observation)
 - [Pattern expression with STIX and CUSTOM attributes - Multiple Observation](#multiple-observation)
 - [STIX Execute Query](#stix-execute-query)
-- [Observations](#observations)
+- [Recommendations](#recommendations)
 - [Limitations](#limitations)
 - [References](#references)
 
