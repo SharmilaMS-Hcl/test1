@@ -68,7 +68,7 @@ crowdstrike_logscale
 "{\"host\":\"xxx\"}"
 "{\"auth\":{\"repository\":\"TestRepository\",\"api_token\": \"123\"}}"
 results
-"{ \"source\": \"crowdstrike_edr\", \"queryString\": \"(device.hostname = /EC2/i and @rawstring = /\\"behaviors\\"\\s*:\\s*\\[.*\\"filename\\"\\s*:\\s*(\\"cmd\\.exe\\"|\\"calc\\.exe\\")/) | tail(10000)\", \"start\": 1702598400000, \"end\": 1703203200000 }"
+"{ \"source\": \"crowdstrike_edr\", \"queryString\": \"device.local_ip =~ cidr(subnet=\\"1.1.1.1/32\\") | tail(10000)\", \"start\": 1702598400000, \"end\": 1703203200000 }"
 0
 1
 
@@ -182,7 +182,7 @@ results
           "last_login_timestamp": "2023-12-20T05:54:17Z",
           "last_login_user": "Administrator",
           "last_seen": "2023-12-21T05:47:37Z",
-          "local_ip": "2.2.2.2",
+          "local_ip": "1.1.1.1",
           "mac_address": "12-34-56-78-6b-9b",
           "major_version": "10",
           "minor_version": "0",
@@ -256,7 +256,6 @@ results
                     "confidence": 100,
                     "control_graph_id": "ctg:7xyz:180393699382",
                     "description": "A process triggered a medium severity custom rule.",
-                    "device_id": "7xyz",
                     "name": "CustomIOAWinMedium",
                     "process_ref": "2",
                     "ioc_description": "\\Device\\HarddiskVolume1\\Windows\\System32\\cmd.exe",
@@ -351,7 +350,7 @@ results
                     "x_behaviors_processed": [
                         "pid:7xyz:184878679367:41002"
                     ],
-                    "time_observed": "2023-12-21T05:48:35.582580046Z",
+                    "time_observed": "2023-12-21T05:48:35.582Z",
                     "x_last_updated": "2023-12-21T05:49:07Z",
                     "name": "ldt:7xyz:180393699382",
                     "src_ip_ref": "11",
@@ -401,12 +400,12 @@ results
                 },
                 "10": {
                     "type": "x-crowdstrike-edr-agent",
-                    "agent_load_flags": "1",
-                    "agent_local_time": "2023-12-21T05:47:27.598Z",
-                    "agent_version": "7.05.17706.0",
-                    "agent_config_id_base": "65994763",
-                    "agent_config_id_build": "17706",
-                    "agent_config_id_platform": "3"
+                    "load_flags": "1",
+                    "local_time": "2023-12-21T05:47:27.598Z",
+                    "version": "7.05.17706.0",
+                    "config_id_base": "65994763",
+                    "config_id_build": "17706",
+                    "config_id_platform": "3"
                 },
                 "11": {
                     "type": "ipv4-addr",
@@ -414,7 +413,7 @@ results
                 },
                 "12": {
                     "type": "ipv4-addr",
-                    "value": "2.2.2.2",
+                    "value": "1.1.1.1",
                     "resolves_to_refs": [
                         "13"
                     ]
@@ -433,7 +432,7 @@ results
                 }
             },
             "last_observed": "2023-12-21T05:49:07.000Z",
-            "first_observed": "2023-12-21T05:48:35.582580046Z",
+            "first_observed": "2023-12-21T05:48:35.582Z",
             "number_observed": 1
         }
     ],
@@ -468,7 +467,7 @@ crowdstrike_logscale
 "{\"type\":\"identity\",\"id\":\"identity--f431f809-377b-45e0-aa1c-6a4751cae5ff\",\"name\":\"crowdstrike_logscale\",\"identity_class\":\"system\",\"created\":\"2023-12-24T13:22:50.336Z\",\"modified\":\"2022-12-24T13:22:50.336Z\"}"
 "{\"host\":\"xyz\"}"
 "{\"auth\":{\"repository\":\"TestRepository\",\"api_token\":  \"123\"}}" 
-"[directory:path = '\\Device\\HarddiskVolume1\\Windows\\System32\\conhost.exe' AND software:version = 'Windows Server 2022' OR x-oca-asset:host_type = 'Server' OR x-crowdstrike-detection-behavior:control_graph_id IN (2048,10240)] START t'2023-12-15T00:00:00.000Z' STOP t'2023-12-22T00:00:00.000Z'"
+"[ipv4-addr:value = '3.4.5.6' AND software:version = 'Windows Server 2022' OR x-oca-asset:host_type = 'Server' OR x-crowdstrike-detection-behavior:control_graph_id IN (2048,10240)] START t'2023-12-15T00:00:00.000Z' STOP t'2023-12-22T00:00:00.000Z'"
 ```
 
 #### STIX Execute query - Output
@@ -509,7 +508,6 @@ crowdstrike_logscale
                     "confidence": 100,
                     "control_graph_id": "ctg:7xyz:180400197374",
                     "description": "A process triggered a medium severity custom rule.",
-                    "device_id": "7xyz",
                     "name": "CustomIOAWinMedium",
                     "process_ref": "2",
                     "ioc_description": "\\Device\\HarddiskVolume1\\Windows\\System32\\winver.exe",
@@ -604,7 +602,7 @@ crowdstrike_logscale
                     "x_behaviors_processed": [
                         "pid:7xyz:186025680478:41002"
                     ],
-                    "time_observed": "2023-12-21T10:48:33.774411258Z",
+                    "time_observed": "2023-12-21T10:48:33.774Z",
                     "x_last_updated": "2023-12-21T10:49:06Z",
                     "name": "ldt:7xyz:180400197374",
                     "src_ip_ref": "11",
@@ -654,12 +652,12 @@ crowdstrike_logscale
                 },
                 "10": {
                     "type": "x-crowdstrike-edr-agent",
-                    "agent_load_flags": "1",
-                    "agent_local_time": "2023-12-21T05:47:27.598Z",
-                    "agent_version": "7.05.17706.0",
-                    "agent_config_id_base": "65994763",
-                    "agent_config_id_build": "17706",
-                    "agent_config_id_platform": "3"
+                    "load_flags": "1",
+                    "local_time": "2023-12-21T05:47:27.598Z",
+                    "version": "7.05.17706.0",
+                    "config_id_base": "65994763",
+                    "config_id_build": "17706",
+                    "config_id_platform": "3"
                 },
                 "11": {
                     "type": "ipv4-addr",
@@ -686,7 +684,7 @@ crowdstrike_logscale
                 }
             },
             "last_observed": "2023-12-21T10:49:06.000Z",
-            "first_observed": "2023-12-21T10:48:33.774411258Z",
+            "first_observed": "2023-12-21T10:48:33.774Z",
             "number_observed": 1
         }
     ],
@@ -694,20 +692,18 @@ crowdstrike_logscale
 }
 ```
 
-### Observations
-- Crowdstrike Logscale stores data in repositories. Each repository can store logs from different log sources.
-  For connector development, a single repository should store logs from a single data source and separate mapping 
-  files needs to be maintained for each data source.
-- The supported log source structure for connector development is Json.
-- The mapping of list of dictionary fields in from_stix_map should be mentioned with '[*]' suffix. 
-  Example, if behavior_id field is part of list of dictionary attribute behaviors, inorder to map the behavior_id field, 
-  the mapping should be represented as 'behaviors[*].behavior_id'
-- It is suggested to use single observation for a query which uses array attributes and a query which uses ISSUBSET operator.
-- 
+### Recommendations
+### Connector Usage
+1. For connector usage, it is recommended to maintain logs from single log source per repository in crowdstrike logscale. 
+2. Avoid parsing error during ingestion of logs in crowdstrike logscale.
+### Connector Extension
+1. Separate mapping files needs to be created for each log source.
+2. The structure of log source data ingest into logscale should be of type JSON .
+3. The mapping of list (list of values/list of dictionary) fields in from_stix_map should be mentioned with ['*'] suffix. Example, behaviors['*'].id'.  Here 'behaviors' is a list of dictionaries with id as attribute key inside behaviors.
 
 ### Limitations
 - LIKE,MATCHES, <, >, <=, >= operators are not supported for list of dictionary fields.
-- IN, <, >, <=, >= operators are not supported for stix query which uses array attributes
+- IN, <, >, <=, >= operators are not supported for array fields
 
 
 ### References
@@ -716,3 +712,4 @@ crowdstrike_logscale
 - [Search API | Integrations](https://library.humio.com/integrations/api-search.html)
 - [Health Check API | Integrations](https://library.humio.com/integrations/api-health-check.html)
 - [FalconLogScaleCollector | Falcon LogScaleCollector 1.3.0-1.5.1](https://library.humio.com/falcon-logscale-collector/log-shippers-log-collector.html)
+- [Crowdstrike EDR Log injestion through log shippers](https://github.com/CrowdStrike/HEC-Log-Shipper/tree/main)
